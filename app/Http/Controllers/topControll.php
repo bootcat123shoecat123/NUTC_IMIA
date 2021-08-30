@@ -216,6 +216,7 @@ class topControll extends Controller
             foreach($re["qnaDocuments"] as $singleQA){
                 if($singleQA->id==$id){
                     break;
+                    
                 }
             }
         }
