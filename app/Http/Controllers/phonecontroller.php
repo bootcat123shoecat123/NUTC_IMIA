@@ -49,7 +49,7 @@ class phonecontroller extends Controller
             $url='https://nutc.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
             $key="71d073f160924eb6b45b21cb2960b486";
             $kb_id="eef1b7fe-64eb-41df-821c-2ac57c853477";
-            if ($R->id<=64)$soure="0802ebc6-a0c2-41ad-9a10-3d8f3d3a2fdb-Kb.tsv";
+            if (($R->id>=39)and($R->id<=106))$soure="0802ebc6-a0c2-41ad-9a10-3d8f3d3a2fdb-Kb.tsv";
             else $soure="Custom Editorial";
         
         if($R->A!="")$sendA='"answer": "'.$R->A.'",';
