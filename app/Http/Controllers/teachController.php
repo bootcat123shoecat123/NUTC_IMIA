@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\teach_model;
 use Illuminate\Http\Request;
+use SebastianBergmann\Type\ObjectType;
 
 class teachController extends Controller
 {
@@ -20,7 +21,10 @@ class teachController extends Controller
     }
     function show(){
         #report coursemap's name、url
-        $cline['teach']=teach_model::all();
+        
+        $cline=[
+            "teach"=>teach_model::all()
+        ];
         return view('teachView',[
             'value'=>$cline
         ]);
