@@ -10,7 +10,7 @@ class build_model extends Model
     use HasFactory;
     protected $table='building';
     protected $primaryKey = 'code';
-    protected $keyType = 'int';
+    protected $keyType = 'string';
     protected $fillable=[
         'code',
         'name',

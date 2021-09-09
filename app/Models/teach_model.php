@@ -11,7 +11,7 @@ class teach_model extends Model
     
     protected $table='teacher';
     protected $primaryKey = 'name';
-    protected $keyType = 'varchar';
+    protected $keyType = 'string';
     protected $fillable=[
         'name',
         'infomation'
