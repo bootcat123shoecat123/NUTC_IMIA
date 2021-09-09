@@ -39,7 +39,7 @@ class idController extends Controller
     }
     function show(){
         #report coursemap's name、url
-        $cline=[
+        $cline=(Object)[
             'office'=>id_model::all(),
             'building'=>build_model::all()
         ];

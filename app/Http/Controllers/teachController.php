@@ -22,7 +22,7 @@ class teachController extends Controller
     function show(){
         #report coursemap's name、url
         
-        $cline=[
+        $cline=(Object)[
             "teach"=>teach_model::all()
         ];
         return view('teachView',[
