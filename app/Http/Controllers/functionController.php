@@ -8,22 +8,29 @@ use Illuminate\Http\Request;
 class functionController extends Controller
 {
     //
-    function updateO(Request $R){
-        $recheck=$R->validate(['Ocode'=>'required','code'=>'required','name'=>'required']);
-        function_model::where('code',$R->Ocode)->update(
+    function updateF(Request $R){
+        $recheck=$R->validate(
+            ['msgIn'=>'required',
+            'msgOut'=>'required',
+            'mark'=>'required',
+            'sort'=>'required']
+        );
+        function_model::where('msgIn',$R->Ocode)->update(
             [
                 'code'=>$R->code,
                 'name'=>$R->name
             ]
             );
-        return redirect('/backID');
+        return redirect('/backFun');
     }
     function show(){
         #report coursemap's name、url
         $cline=(Object)[
-            'function'=>function_model::all()
+            'coursemap'=>function_model::where('sort','coursemap'),
+            'richmanu'=>function_model::where('sort','richmanu'),
+            'introduce'=>function_model::where('sort','introduce'),
         ];
-        return view('idView',[
+        return view('functionView',[
             'value'=>$cline
         ]);
     }

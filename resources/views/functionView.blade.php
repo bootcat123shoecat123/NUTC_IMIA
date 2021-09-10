@@ -51,20 +51,38 @@ background: black;
     <body class="antialiased"> 
         <table>
             
-            @foreach ($value->teach as $item)
+            @foreach ($value->coursemap as $item)
             <tr>
-               <td>{{$item->name}}</td> <td> {{$item->infomation}}</td>
+               <td>{{$item->msgIn}}</td> <td> {{$item->msgOut}}</td> <td> {{$item->mark}}</td>
             </tr>
             @endforeach
             
         </table>
-        
-        <form action="/backTeach/Tupdate" method="POST">
+        <table>
+            
+            @foreach ($value->richmanu as $item)
+            <tr>
+               <td>{{$item->msgIn}}</td> <td> {{$item->msgOut}}</td> <td> {{$item->mark}}</td>
+            </tr>
+            @endforeach
+            
+        </table>
+        <table>
+            
+            @foreach ($value->introduce as $item)
+            <tr>
+               <td>{{$item->msgIn}}</td> <td> {{$item->msgOut}}</td> <td> {{$item->mark}}</td>
+            </tr>
+            @endforeach
+            
+        </table>
+        <form action="/backTeach/Fupdate" method="POST">
             {{ csrf_field() }}
             
-            <input type="hidden" name="Oname"><!--需存下原code-->
-            <input type="text" name="name">
-            <input type="text" name="infomation">
+            <input type="text" name="msgIn">
+            <input type="text" name="msgOut">
+            <input type="text" name="mark">
+            <input type="text" name="sort">
             <input type="submit" value="">
         </form>
     </body>

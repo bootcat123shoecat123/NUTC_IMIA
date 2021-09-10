@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\functionController;
 use App\Http\Controllers\idController;
 use App\Http\Controllers\topControll;
 use App\Http\Controllers\phonecontroller;
@@ -41,11 +42,11 @@ Route::post('/backID/Bupdate',[idController::class,'updateB']);
 
 Route::post('/backTeach/Tupdate',[teachController::class,'updateT']);
 
-Route::post('/backMap/Mupdate',[teachController::class,'updateT']);
+Route::post('/backFun/Fupdate',[teachController::class,'updateF']);
+Route::post('/backMap/Mupdate',[teachController::class,'updateM']);
 
+Route::get('/backFun', [functionController::class,'show']);
 Route::get('/backTeach', [teachController::class,'show']);
-
-
 Route::get('/backMap', [mapController::class,'show']);
 Route::get('/backID', [idController::class,'show']);
 Route::get('/phone', [phonecontroller::class,'show']);
