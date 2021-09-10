@@ -20,8 +20,10 @@ class mapController extends Controller
     function show(){
         #report coursemap's name、url
         $cline=(Object)[
-            'IA'=>map_model::where('name',"like","資應%")->get(),
-            'IM'=>map_model::where('name', 'not like' ,"資應%")->get()
+            'IA5'=>map_model::where('name',"like","資應五專%")->get(),
+            'IA2'=>map_model::where('name',"like","資應二技%")->get(),
+            'IM5'=>map_model::where('name', 'like' ,"五專%")->get(),
+            'IM2'=>map_model::where('name', 'like' ,"二技%")->get()
         ];
         return view('mapView',[
             'value'=>$cline

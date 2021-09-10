@@ -14,7 +14,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<link href="{{asset('t.css')}}" rel="stylesheet">
+
         <!-- Styles -->
         <style>
             tr:nth-of-type(odd) td form .blocker{
@@ -51,46 +51,20 @@ background: black;
     <body class="antialiased"> 
         <table>
             
-            @foreach ($value->IA2 as $item)
+            @foreach ($value->teach as $item)
             <tr>
-               <td>{{$item->name}}</td> <td> {{$item->url}}</td>
+               <td>{{$item->name}}</td> <td> {{$item->infomation}}</td>
             </tr>
             @endforeach
             
         </table>
-        <table>
-            
-            @foreach ($value->IM2 as $item)
-            <tr>
-               <td>{{$item->name}}</td> <td> {{$item->url}}</td>
-            </tr>
-            @endforeach
-            
-        </table>
-        <table>
-            
-        @foreach ($value->IA5 as $item)
-        <tr>
-           <td>{{$item->name}}</td> <td> {{$item->url}}</td>
-        </tr>
-        @endforeach
         
-    </table>
-    <table>
-        
-        @foreach ($value->IM5 as $item)
-        <tr>
-           <td>{{$item->name}}</td> <td> {{$item->url}}</td>
-        </tr>
-        @endforeach
-        
-    </table>
-        <form action="/backMap/Mupdate" method="POST">
+        <form action="/backTeach/Tupdate" method="POST">
             {{ csrf_field() }}
             
             <input type="hidden" name="Oname"><!--需存下原code-->
             <input type="text" name="name">
-            <input type="text" name="url">
+            <input type="text" name="infomation">
             <input type="submit" value="">
         </form>
     </body>
