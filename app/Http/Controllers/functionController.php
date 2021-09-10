@@ -26,9 +26,9 @@ class functionController extends Controller
     function show(){
         #report coursemap's name、url
         $cline=(Object)[
-            'coursemap'=>function_model::where('sort','coursemap'),
-            'richmanu'=>function_model::where('sort','richmanu'),
-            'introduce'=>function_model::where('sort','introduce'),
+            'coursemap'=>function_model::where('sort',"coursemap")->get(),
+            'richmanu'=>function_model::where('sort',"richmanu")->get(),
+            'introduce'=>function_model::where('sort',"introduce")->get()
         ];
         return view('functionView',[
             'value'=>$cline
