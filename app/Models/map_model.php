@@ -10,7 +10,7 @@ class map_model extends Model
     use HasFactory;
     protected $table='coursemap';
     protected $primaryKey = 'name';
-    protected $keyType = 'varchar';
+    protected $keyType = 'string';
     protected $fillable=[
         'name',
         'url'

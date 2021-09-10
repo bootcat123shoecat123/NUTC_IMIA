@@ -7,14 +7,23 @@ use Illuminate\Http\Request;
 
 class mapController extends Controller
 {
-    function update(Request $R){
+    function Mupdate(Request $R){
         $recheck=$R->validate(['name'=>'required','url'=>'required']);
+        map_model::where('name',$R->name)->update(
+            [
+                'name'=>$R->name,
+                'url'=>$R->url
+            ]
+            );
+            redirect('/backMap');
     }
     function show(){
         #report coursemap's name、url
-        $cline['資應']=map_model::where('name',"資應%")->all();
-        $cline['資管']=map_model::where('name', '!=' ,"資應%")->orWhereNull('name')->all();
-        return view('',[
+        $cline=(Object)[
+            'IA'=>map_model::where('name',"like","資應%")->get(),
+            'IM'=>map_model::where('name', 'not like' ,"資應%")->get()
+        ];
+        return view('mapView',[
             'value'=>$cline
         ]);
     }
