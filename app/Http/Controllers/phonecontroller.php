@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 class phonecontroller extends Controller
 {
     function question(Request $R){
-        return($this->show($R->id));
+        return($this->show($R));
      }
     //
     function update(Request $R){
@@ -173,7 +173,7 @@ class phonecontroller extends Controller
         curl_close($curl);
         return $response;
     }
-    function show(string $id=null){
+    function show(Request $R=null){
         $r="";
         $url="";
         $key="";
@@ -210,17 +210,18 @@ class phonecontroller extends Controller
 
             echo("</table>");*/
             $singleQA=[];
-            if($id!=null){
+            if($R->id!=null){
             foreach($re["qnaDocuments"] as $singleQA){
-                if($singleQA->id==$id){
+                if($singleQA->id==$R->id){
                     break;
                 }
             }
         }
-        if($id!=null){
+        if($R->id!=null){
         return view('phoneView',[
             'QAphone'=>$re["qnaDocuments"],
-            'Q'=>$singleQA
+            'Q'=>$singleQA,
+            'num'=>$R->num
             ]);
         }else{
         return view('phoneView',[

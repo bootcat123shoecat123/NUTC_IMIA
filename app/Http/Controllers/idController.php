@@ -9,6 +9,28 @@ use Illuminate\Http\Request;
 class idController extends Controller
 {
     //
+    function deleteB(Request $R){
+        $recheck=$R->validate(
+            [
+            'code'=>'required'
+            ]
+        );
+        
+        build_model::where('code',$R->code)->delete();
+            
+        return redirect('/backID');
+    }
+    function deleteO(Request $R){
+        $recheck=$R->validate(
+            [
+            'code'=>'required'
+            ]
+        );
+        
+        id_model::where('code',$R->code)->delete();
+            
+        return redirect('/backID');
+    }
     function updateB(Request $R){
         $recheck=$R->validate(
             ['Ocode'=>'required',

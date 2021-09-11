@@ -139,14 +139,14 @@ background: black;
 
                     @foreach ($QAphone as $item)
                     @php
-                    $modal = "exampleModal".(string)$mnum;
+                    $modal = "exampleModal".$mnum;
                   @endphp
                     <div class="row">
                         <div class="col-1 text-center">
                             <a href="#{{$item->id}}"></a><td class="col-1 h2" scope="col" onclick="putid('phone',{{$item->id}})">{{$mnum}}</td>
                         </div>
                         <div class="col-3 text-center">
-                            <form action="/question/phone" method="post">{{ csrf_field() }}  <input name="id" type="hidden" value="{{$item->id}}"><input class="btn btn-info w-100 blocker" type="submit" value="Questions"></form>
+                            <form action="/question/phone" method="post">{{ csrf_field() }} <input name="num" type="hidden" value="{{$mnum}}"> <input name="id" type="hidden" value="{{$item->id}}"><input class="btn btn-info w-100 blocker" type="submit" value="Questions"></form>
                           
                         </div>
                         <div class="col-6">
@@ -197,10 +197,8 @@ background: black;
 </form>
 
                         </div>
-                    </div><input type=hidden value="
-                    @php
-                    $mnum++
-                  @endphp">
+                    </div><input type=hidden value="{{
+                    $mnum++}}">
                     @endforeach
                 
                 </div>
@@ -214,24 +212,24 @@ background: black;
                     @if (isset($Q))
                     <table class="table pl-4">
                         <tr class="row ">
-                            <th class="col-1 w-80" scope="col">{{$mnum}}</th>
+                            <th class="col-1 w-80" scope="col">{{$num}}</th>
                             <th class="col-1 w-80" scope="col">
                               {{-- <input type="button" onclick="putid('phone',{{$Q->id}})" value="新增sdasd問句" class="btn btn-outline-success pull-right w-100 ls2" > --}}
                                                   <!-- Button trigger modal -->
                                                   {{-- @php
                                                   $modal2 = "exampleModal".(string)$Q->id;
                                                 @endphp --}}
-<button type="button" class="btn btn-outline-info pull-right ls3" data-toggle="modal" data-target="<?php echo '#exampleModal'.$Q->id ?>">
+<button type="button" class="btn btn-outline-info pull-right ls3" data-toggle="modal" data-target="<?php echo '#exampleModal'.$num ?>">
   新增問題
 </button>
 
 <!-- Modal -->
-<div class="modal fade c0" id="<?php echo 'exampleModal'.$Q->id ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo '#exampleModal'.$Q->id.'Title' ?>" aria-hidden="true">
+<div class="modal fade c0" id="exampleModal{{$num}}" tabindex="-1" role="dialog" aria-labelledby="#exampleModal{{$num}}Title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
       
-        <h5 class="modal-title" id="<?php echo 'exampleModal'.$Q->id.'Title' ?>">{{$mnum}}</h5>
+        <h5 class="modal-title" id="<?php echo 'exampleModal'.$num.'Title' ?>">{{$num}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
