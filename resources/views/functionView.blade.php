@@ -14,7 +14,6 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
         <!-- Styles -->
         <style>
             tr:nth-of-type(odd) td form .blocker{
@@ -43,47 +42,362 @@ background: black;
     top:0%;
     left: 0%;
 }
+
+body{
+    　overflow-x: hidden;
+}
         </style>
     </head>
     
    
     
     <body class="antialiased"> 
-        <table>
+        <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                
+              </ul>
+              
+            </div>
+          </nav>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
+            <div class="position-fixed text-white container">
+              <a class="h2 text-white">QnA</a>
+              <ul class="nav navbar-nav text-white">
+               <li ><a href="/backTeach">教師資訊</a></li>
+               <li ><a href="/backID">樓層資訊</a></li>
+               <li ><a href="/backMap">課程地圖</a></li>
+               <li ><a href="/backFun">功能</a></li>
+             </ul>
+                <a class="h2 text-white">Database</a>
+               <ul class="nav navbar-nav text-white">
+                <li ><a href="/place">處室位置</a></li>
+                <li class="active"><a href="/phone">聯絡方式</a></li>
+              </ul>
+            </div>
+        </div>
+    
+        <div class="col-10 ml-5">
+            <br>
+            <div class="row align-self-center ml-5">
+      
+            <h5 class="col-10"><strong>功能介紹</strong></h5>
             
-            @foreach ($value->coursemap as $item)
-            <tr>
-               <td>{{$item->msgIn}}</td> <td> {{$item->msgOut}}</td> <td> {{$item->mark}}</td>
-            </tr>
-            @endforeach
-            
-        </table>
-        <table>
-            
-            @foreach ($value->richmanu as $item)
-            <tr>
-               <td>{{$item->msgIn}}</td> <td> {{$item->msgOut}}</td> <td> {{$item->mark}}</td>
-            </tr>
-            @endforeach
-            
-        </table>
-        <table>
-            
-            @foreach ($value->introduce as $item)
-            <tr>
-               <td>{{$item->msgIn}}</td> <td> {{$item->msgOut}}</td> <td> {{$item->mark}}</td>
-            </tr>
-            @endforeach
-            
-        </table>
-        <form action="/backTeach/Fupdate" method="POST">
-            {{ csrf_field() }}
-            
-            <input type="text" name="msgIn">
-            <input type="text" name="msgOut">
-            <input type="text" name="mark">
-            <input type="text" name="sort">
-            <input type="submit" value="">
-        </form>
+     </div>
+   
+        <div class="container-fluid border border-light rounded">
+            <div class="row mt-3">
+                <div class="col-3 text-center">
+                    <strong>功能表單</strong>
+                    <hr>
+                </div>
+                <div class="col-5 text-center">
+                    <strong>使用說明</strong>
+                    <hr>
+                </div>
+
+                <div class="col-2 text-center">
+                    <strong>操作</strong>
+                    <hr>
+                </div>
+            </div>
+     @php
+     $mnum = 1;
+ @endphp
+ @foreach($value->richmanu as $item)
+     @php
+         $modal = "exampleModal".(string)$mnum;
+     @endphp
+     <div class="row">
+        <div class="col-3 text-center">
+        <p>{{  $item->msgIn }}</p>
+        </div>
+        <div class="col-5 ">
+        <span>{!! $item->msgOut!!}</span>
+        </div>
+     
+
+
+        <div class="col-1">
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."ri" ?>">
+                🖊️
+                </button>
+        <div class="modal fade c0" id="<?php echo $modal."ri" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."Titleri" ?>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-d">
+                <div class="modal-header">
+                <h5 class="modal-title" id="<?php echo $modal."Titleri" ?>">{{$item->msgIn}}</h5>
+                <button type="button" class="close c0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+
+                <div class="container">
+                  
+                    <form method="post"  action="">
+                {{ csrf_field() }}
+                <div class="m-12">
+              <div class="row">
+                  <div class="col-12">
+                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
+                  </div>
+
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" >
+                  </div>
+                  <br>
+                  <div class="m-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                      </div>
+                    </div>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
+                  </div>
+                  <br>
+                  <div class="modal-footer m-12">
+                    <input class="btn btn-primary pull-bottom w-100" type="submit">
+                  </div>
+                </form>
+
+              
+                
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+        </div>
+        <div class="col-1">
+<form action="/delete/phone/" method="post">
+                {{ csrf_field() }}
+                <input name="id" type="hidden" value="{{$item->id}}" >
+                <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+</form>
+</div>
+
+@php
+$mnum++
+@endphp
+</div>
+@endforeach
+
+        </div>
+
+        <div class="container-fluid border border-light rounded">
+            <div class="row mt-3">
+                <div class="col-3 text-center">
+                    <strong>CARD名稱</strong>
+                    <hr>
+                </div>
+                <div class="col-5 text-center">
+                    <strong>詳細資訊</strong>
+                    <hr>
+                </div>
+
+                <div class="col-2 text-center">
+                    <strong>操作</strong>
+                    <hr>
+                </div>
+            </div>
+     @php
+     $mnum = 1;
+ @endphp
+ @foreach($value->coursemap as $item)
+     @php
+         $modal = "exampleModal".(string)$mnum;
+     @endphp
+     <div class="row">
+        <div class="col-3 text-center">
+        <p>{{  $item->msgIn }}</p>
+        </div>
+        <div class="col-5 ">
+        <span>{!! $item->msgOut!!}</span>
+        </div>
+     
+
+
+        <div class="col-1">
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."Co" ?>">
+                🖊️
+                </button>
+        <div class="modal fade c0" id="<?php echo $modal."Co" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleCo" ?>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-d">
+                <div class="modal-header">
+                <h5 class="modal-title" id="<?php echo $modal."TitleCo" ?>">{{$item->msgIn}}</h5>
+                <button type="button" class="close c0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+
+                <div class="container">
+                  
+                    <form method="post"  action="">
+                {{ csrf_field() }}
+                <div class="m-12">
+              <div class="row">
+                  <div class="col-12">
+                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
+                  </div>
+
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" >
+                  </div>
+                  <br>
+                  <div class="m-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                      </div>
+                    </div>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
+                  </div>
+                  <br>
+                  <div class="modal-footer m-12">
+                    <input class="btn btn-primary pull-bottom w-100" type="submit">
+                  </div>
+                </form>
+
+              
+                
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+        </div>
+        <div class="col-1">
+<form action="/delete/phone/" method="post">
+                {{ csrf_field() }}
+                <input name="id" type="hidden" value="{{$item->id}}" >
+                <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+</form>
+</div>
+
+@php
+$mnum++
+@endphp
+</div>
+@endforeach
+
+        </div>
+        <div class="container-fluid border border-light rounded">
+            <div class="row mt-3">
+                <div class="col-3 text-center">
+                    <strong>資管介紹</strong>
+                    <hr>
+                </div>
+                <div class="col-5 text-center">
+                    <strong>詳細資訊</strong>
+                    <hr>
+                </div>
+
+                <div class="col-2 text-center">
+                    <strong>操作</strong>
+                    <hr>
+                </div>
+            </div>
+     @php
+     $mnum = 1;
+ @endphp
+ @foreach($value->introduce as $item)
+     @php
+         $modal = "exampleModal".(string)$mnum;
+     @endphp
+     <div class="row">
+        <div class="col-3 text-center">
+        <p>{{  $item->msgIn }}</p>
+        </div>
+        <div class="col-5 ">
+        <span>{!! $item->msgOut!!}</span>
+        </div>
+     
+
+
+        <div class="col-1">
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."Bu" ?>">
+                🖊️
+                </button>
+        <div class="modal fade c0" id="<?php echo $modal."Bu" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleBu" ?>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-d">
+                <div class="modal-header">
+                <h5 class="modal-title" id="<?php echo $modal."TitleBu" ?>">{{$item->msgIn}}</h5>
+                <button type="button" class="close c0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+
+                <div class="container">
+                  
+                    <form method="post"  action="">
+                {{ csrf_field() }}
+                <div class="m-12">
+              <div class="row">
+                  <div class="col-12">
+                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
+                  </div>
+
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" >
+                  </div>
+                  <br>
+                  <div class="m-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                      </div>
+                    </div>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
+                  </div>
+                  <br>
+                  <div class="modal-footer m-12">
+                    <input class="btn btn-primary pull-bottom w-100" type="submit">
+                  </div>
+                </form>
+
+              
+                
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+        </div>
+        <div class="col-1">
+<form action="/delete/phone/" method="post">
+                {{ csrf_field() }}
+                <input name="id" type="hidden" value="{{$item->id}}" >
+                <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+</form>
+</div>
+
+@php
+$mnum++
+@endphp
+</div>
+@endforeach
+
+        </div>
+        
+</div>
+</div>
+</div>
+</div>
+
     </body>
 </html>

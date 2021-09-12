@@ -48,12 +48,31 @@ background: black;
    
     
     <body class="antialiased"> 
-        <div class="container-fluid">
-            <div class="row flex-nowrap">
+      <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            
+          </ul>
+          
+        </div>
+      </nav>
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
             <div class="position-fixed text-white container">
+              <a class="h2 text-white">QnA</a>
+              <ul class="nav navbar-nav text-white">
+               <li ><a href="/backTeach">教師資訊</a></li>
+               <li ><a href="/backID">樓層資訊</a></li>
+             </ul>
                 <a class="h2 text-white">Database</a>
                <ul class="nav navbar-nav text-white">
                 <li ><a href="/place">處室位置</a></li>
@@ -197,8 +216,16 @@ background: black;
 </form>
 
                         </div>
+<<<<<<< Updated upstream
                     </div><input type=hidden value="{{
                     $mnum++}}">
+=======
+                    </div>
+                  
+                    @php
+                    $mnum++
+                  @endphp
+>>>>>>> Stashed changes
                     @endforeach
                 
                 </div>
