@@ -8,17 +8,51 @@ use Illuminate\Http\Request;
 class functionController extends Controller
 {
     //
+
+    function deleteF(Request $R){
+        $recheck=$R->validate(
+            [
+            'msgIn'=>'required'
+            ]
+        );
+        
+        function_model::where('msgIn',$R->msgIn)->delete();
+            
+        return redirect('/backFun');
+    }
     function updateF(Request $R){
         $recheck=$R->validate(
-            ['msgIn'=>'required',
+            [
+            'OmsgIn'=>'required',
+            'msgIn'=>'required',
             'msgOut'=>'required',
             'mark'=>'required',
             'sort'=>'required']
         );
-        function_model::where('msgIn',$R->Ocode)->update(
+        function_model::where('msgIn',$R->OmsgIn)->update(
             [
-                'code'=>$R->code,
-                'name'=>$R->name
+                'msgIn'=>$R->msgIn,
+                'msgOut'=>$R->msgOut,
+                'mark'=>$R->mark,
+                'sort'=>$R->sort
+            ]
+            );
+        return redirect('/backFun');
+    }
+    function createF(Request $R){
+        $recheck=$R->validate(
+            [
+            'msgIn'=>'required',
+            'msgOut'=>'required',
+            'mark'=>'required',
+            'sort'=>'required']
+        );
+        function_model::insert(
+            [
+                'msgIn'=>$R->msgIn,
+                'msgOut'=>$R->msgOut,
+                'mark'=>$R->mark,
+                'sort'=>$R->sort
             ]
             );
         return redirect('/backFun');

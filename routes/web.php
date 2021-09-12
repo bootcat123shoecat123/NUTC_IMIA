@@ -39,11 +39,22 @@ Route::post('/delete/place',[topControll::class,'delete']);
 
 Route::post('/backID/Oupdate',[idController::class,'updateO']);
 Route::post('/backID/Bupdate',[idController::class,'updateB']);
+Route::post('/deleteB/backID',[idController::class,'deleteB']);
+Route::post('/deleteO/backID',[idController::class,'deleteO']);
+Route::post('/createB/backID',[idController::class,'createB']);
+Route::post('/createO/backID',[idController::class,'createO']);
 
 Route::post('/backTeach/Tupdate',[teachController::class,'updateT']);
+Route::post('/delete/backTeach',[teachController::class,'deleteT']);
+Route::post('/create/backTeach',[teachController::class,'createT']);
 
-Route::post('/backFun/Fupdate',[teachController::class,'updateF']);
-Route::post('/backMap/Mupdate',[teachController::class,'updateM']);
+Route::post('/backFun/Fupdate',[functionController::class,'updateF']);
+Route::post('/delete/backFun',[functionController::class,'deleteF']);
+Route::post('/create/backFun',[functionController::class,'createF']);
+
+Route::post('/backMap/Mupdate',[mapController::class,'updateM']);
+Route::post('/delete/backMap',[mapController::class,'deleteM']);
+Route::post('/create/backMap',[mapController::class,'createM']);
 
 Route::get('/backFun', [functionController::class,'show']);
 Route::get('/backTeach', [teachController::class,'show']);

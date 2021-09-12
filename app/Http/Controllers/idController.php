@@ -9,6 +9,35 @@ use Illuminate\Http\Request;
 class idController extends Controller
 {
     //
+    function createB(Request $R){
+        $recheck=$R->validate(
+            [
+            'code'=>'required',
+            'name'=>'required',
+            'campus'=>'required'
+            ]
+        );
+        build_model::insert(
+            [
+                'code'=>$R->code,
+                'name'=>$R->name,
+                'campus'=>$R->campus
+            ]
+            );
+        return redirect('/backID');
+    }
+    function createO(Request $R){
+        $recheck=$R->validate(
+            ['Ocode'=>'required','code'=>'required','name'=>'required']
+        );
+        id_model::insert(
+            [
+                'code'=>$R->code,
+                'name'=>$R->name
+            ]
+            );
+        return redirect('/backID');
+    }
     function deleteB(Request $R){
         $recheck=$R->validate(
             [
