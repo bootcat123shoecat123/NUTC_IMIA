@@ -111,23 +111,24 @@ background: black;
                       </div>
                       <div class="modal-body">
                           
-                    <form method="post"  action="/backMap/Mupdate">
+                    <form method="post"  action="/create/backMap">
+                        {{ csrf_field() }}
                             <div class="m-3">
                           <div class="row">
                               <div class="col-3">
-                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">代碼</label>
+                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
                               </div>
 
                             </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox" name="">
+                            <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
                               </div>
                               <div class="m-3">
                                 <div class="row">
                                   <div class="col-3">
-                                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">建築名稱</label>
+                                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">url</label>
                                   </div>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" name="">
+                                <input type="text" class="form-control" aria-label="Text input with checkbox" name="url">
                               </div>
                               <br>
                             <input class="btn btn-primary pull-bottom w-100" type="submit">
@@ -157,6 +158,9 @@ background: black;
      <div class="row">
         <div class="col-10 text-center">
         <p>{{  $item->name }}</p>
+        </div>
+        <div class="col-10 text-center">
+        <p>{{  $item->url }}</p>
         </div>
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#{{$modal}}IM2">
@@ -236,6 +240,10 @@ $mnum++
         <div class="col-10 text-center">
         <p>{{  $item->name }}</p>
         </div>
+        
+        <div class="col-10 text-center">
+            <p>{{  $item->url }}</p>
+            </div>
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
                 🖊️
@@ -324,6 +332,10 @@ $mnum++
         <div class="col-10 text-center">
         <p>{{  $item->name }}</p>
         </div>
+        
+        <div class="col-10 text-center">
+            <p>{{  $item->url }}</p>
+            </div>
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
                 🖊️
@@ -404,6 +416,10 @@ $mnum++
           <div class="col-10 text-center">
           <p>{{  $item->name }}</p>
           </div>
+          
+        <div class="col-10 text-center">
+            <p>{{  $item->url }}</p>
+            </div>
           <div class="col-1">
               <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
                   🖊️
