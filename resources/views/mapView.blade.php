@@ -241,14 +241,14 @@ $mnum++
         <p>{{  $item->name }}</p>
         </div>
         <div class="col-1">
-            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM5" ?>">
                 🖊️
                 </button>
-        <div class="modal fade c0" id="<?php echo $modal."IM2" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleIM2" ?>" aria-hidden="true">
+        <div class="modal fade c0" id="<?php echo $modal."IM5" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleIM5" ?>" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content bg-d">
                 <div class="modal-header">
-                <h5 class="modal-title" id="<?php echo $modal."TitleIM2" ?>">{{$item->name}}</h5>
+                <h5 class="modal-title" id="<?php echo $modal."TitleIM5" ?>">{{$item->name}}</h5>
                 <button type="button" class="close c0" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -329,14 +329,14 @@ $mnum++
         <p>{{  $item->name }}</p>
         </div>
         <div class="col-1">
-            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IA2" ?>">
                 🖊️
                 </button>
-          <div class="modal fade c0" id="<?php echo $modal."IM2" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleIM2" ?>" aria-hidden="true">
+          <div class="modal fade c0" id="<?php echo $modal."IA2" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleIA2" ?>" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content bg-d">
                   <div class="modal-header">
-                  <h5 class="modal-title" id="<?php echo $modal."TitleIM2" ?>">{{$item->name}}</h5>
+                  <h5 class="modal-title" id="<?php echo $modal."TitleIA2" ?>">{{$item->name}}</h5>
                   <button type="button" class="close c0" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -411,11 +411,11 @@ $mnum++
               <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
                   🖊️
                   </button>
-          <div class="modal fade c0" id="<?php echo $modal."IM2" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleIM2" ?>" aria-hidden="true">
+          <div class="modal fade c0" id="<?php echo $modal."IA5" ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."TitleIA5" ?>" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content bg-d">
                   <div class="modal-header">
-                  <h5 class="modal-title" id="<?php echo $modal."TitleIM2" ?>">{{$item->name}}</h5>
+                  <h5 class="modal-title" id="<?php echo $modal."TitleIA5" ?>">{{$item->name}}</h5>
                   <button type="button" class="close c0" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
