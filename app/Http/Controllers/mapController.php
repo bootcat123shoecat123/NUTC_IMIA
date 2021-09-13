@@ -32,8 +32,8 @@ class mapController extends Controller
         return redirect('/backMap');
     }
     function Mupdate(Request $R){
-        $recheck=$R->validate(['name'=>'required','url'=>'required']);
-        map_model::where('name',$R->name)->update(
+        $recheck=$R->validate(['Oname'=>'required','name'=>'required','url'=>'required']);
+        map_model::where('name',$R->Oname)->update(
             [
                 'name'=>$R->name,
                 'url'=>$R->url

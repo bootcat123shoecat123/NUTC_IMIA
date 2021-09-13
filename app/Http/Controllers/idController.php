@@ -28,7 +28,7 @@ class idController extends Controller
     }
     function createO(Request $R){
         $recheck=$R->validate(
-            ['Ocode'=>'required','code'=>'required','name'=>'required']
+            ['code'=>'required','name'=>'required']
         );
         id_model::insert(
             [
@@ -79,8 +79,9 @@ class idController extends Controller
         return redirect('/backID');
     }
     function updateO(Request $R){
-        $recheck=$R->validate(['Ocode'=>'required','code'=>'required','name'=>'required']);
-        id_model::where('code',$R->Ocode)->update(
+        $recheck=$R->validate(['Ocode'=>'required','code'=>'required',
+        'Oname'=>'required','name'=>'required']);
+        id_model::where('code',$R->Ocode)->where('name',$R->Oname)->update(
             [
                 'code'=>$R->code,
                 'name'=>$R->name

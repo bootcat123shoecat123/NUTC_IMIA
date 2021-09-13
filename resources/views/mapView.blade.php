@@ -110,6 +110,8 @@ background: black;
                         </button>
                       </div>
                       <div class="modal-body">
+                          
+                    <form method="post"  action="/backMap/Mupdate">
                             <div class="m-3">
                           <div class="row">
                               <div class="col-3">
@@ -117,7 +119,7 @@ background: black;
                               </div>
 
                             </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox">
+                            <input type="text" class="form-control" aria-label="Text input with checkbox" name="">
                               </div>
                               <div class="m-3">
                                 <div class="row">
@@ -125,11 +127,11 @@ background: black;
                                     <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">建築名稱</label>
                                   </div>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox">
+                                <input type="text" class="form-control" aria-label="Text input with checkbox" name="">
                               </div>
                               <br>
                             <input class="btn btn-primary pull-bottom w-100" type="submit">
-                            
+                            </form>
                       </div>
 
                     </div>
@@ -172,30 +174,32 @@ background: black;
                 <div class="modal-body">
 
                 <div class="container">
-                  
-                <div class="m-12">
-              <div class="row">
-                  <div class="col-12">
-                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
-                  </div>
-
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" >
-                  </div>
-                  <br>
-                  <div class="m-12">
-                    <div class="row">
-                      <div class="col-12">
-                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
-                      </div>
-                    </div>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
-                  </div>
-                  <br>
-                  <div class="modal-footer m-12">
-                    <input class="btn btn-primary pull-bottom w-100" type="submit">
-                  </div>
-
+                    <form method="post"  action="/backMap/Mupdate">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="Oname" value="{{$item->name}}">
+                        <div class="m-12">
+                      <div class="row">
+                          <div class="col-12">
+                            <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
+                          </div>
+        
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
+                          </div>
+                          <br>
+                          <div class="m-12">
+                            <div class="row">
+                              <div class="col-12">
+                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                              </div>
+                            </div>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
+                          </div>
+                          <br>
+                          <div class="modal-footer m-12">
+                            <input class="btn btn-primary pull-bottom w-100" type="submit">
+                          </div>
+                        </form>
               
                 
             </div>
@@ -248,32 +252,32 @@ $mnum++
                 <div class="modal-body">
 
                 <div class="container">
-                  
-                    <form method="post"  action="">
-                {{ csrf_field() }}
-                <div class="m-12">
-              <div class="row">
-                  <div class="col-12">
-                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
-                  </div>
-
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" >
-                  </div>
-                  <br>
-                  <div class="m-12">
-                    <div class="row">
-                      <div class="col-12">
-                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
-                      </div>
-                    </div>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
-                  </div>
-                  <br>
-                  <div class="modal-footer m-12">
-                    <input class="btn btn-primary pull-bottom w-100" type="submit">
-                  </div>
-                </form>
+                    <form method="post"  action="/backMap/Mupdate">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="Oname" value="{{$item->name}}">
+                        <div class="m-12">
+                      <div class="row">
+                          <div class="col-12">
+                            <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
+                          </div>
+        
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
+                          </div>
+                          <br>
+                          <div class="m-12">
+                            <div class="row">
+                              <div class="col-12">
+                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                              </div>
+                            </div>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
+                          </div>
+                          <br>
+                          <div class="modal-footer m-12">
+                            <input class="btn btn-primary pull-bottom w-100" type="submit">
+                          </div>
+                        </form>
 
               
                 
@@ -284,11 +288,11 @@ $mnum++
     </div>
         </div>
         <div class="col-1">
-<form action="/delete/phone/" method="post">
-                {{ csrf_field() }}
-                <input name="id" type="hidden" value="{{$item->id}}" >
-                <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
-</form>
+            <form action="/delete/backMap" method="post">
+                            {{ csrf_field() }}
+                            <input name="name" type="hidden" value="{{$item->name}}" >
+                            <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+            </form>
 </div>
 <hr>
 @php
@@ -337,31 +341,32 @@ $mnum++
   
                   <div class="container">
                     
-                      <form method="post"  action="">
-                  {{ csrf_field() }}
-                  <div class="m-12">
-                <div class="row">
-                    <div class="col-12">
-                      <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
-                    </div>
-  
-                  </div>
-                  <input type="text" class="form-control" aria-label="Text input with checkbox" >
-                    </div>
-                    <br>
-                    <div class="m-12">
+                    <form method="post"  action="/backMap/Mupdate">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="Oname" value="{{$item->name}}">
+                        <div class="m-12">
                       <div class="row">
-                        <div class="col-12">
-                          <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                          <div class="col-12">
+                            <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
+                          </div>
+        
                         </div>
-                      </div>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
-                    </div>
-                    <br>
-                    <div class="modal-footer m-12">
-                      <input class="btn btn-primary pull-bottom w-100" type="submit">
-                    </div>
-                  </form>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
+                          </div>
+                          <br>
+                          <div class="m-12">
+                            <div class="row">
+                              <div class="col-12">
+                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                              </div>
+                            </div>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
+                          </div>
+                          <br>
+                          <div class="modal-footer m-12">
+                            <input class="btn btn-primary pull-bottom w-100" type="submit">
+                          </div>
+                        </form>
   
                 
                   
@@ -372,11 +377,11 @@ $mnum++
       </div>
           </div>
           <div class="col-1">
-  <form action="/delete/phone/" method="post">
-                  {{ csrf_field() }}
-                  <input name="id" type="hidden" value="{{$item->id}}" >
-                  <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
-  </form>
+            <form action="/delete/backMap" method="post">
+                            {{ csrf_field() }}
+                            <input name="name" type="hidden" value="{{$item->name}}" >
+                            <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+            </form>
   </div>
   <hr>
   @php
@@ -416,8 +421,9 @@ $mnum++
   
                   <div class="container">
                     
-                      <form method="post"  action="">
+                      <form method="post"  action="/backMap/Mupdate">
                   {{ csrf_field() }}
+                  <input type="hidden" name="Oname" value="{{$item->name}}">
                   <div class="m-12">
                 <div class="row">
                     <div class="col-12">
@@ -425,7 +431,7 @@ $mnum++
                     </div>
   
                   </div>
-                  <input type="text" class="form-control" aria-label="Text input with checkbox" >
+                  <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
                     </div>
                     <br>
                     <div class="m-12">
@@ -434,7 +440,7 @@ $mnum++
                           <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
                         </div>
                       </div>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
                     </div>
                     <br>
                     <div class="modal-footer m-12">
@@ -451,11 +457,11 @@ $mnum++
       </div>
           </div>
           <div class="col-1">
-  <form action="/delete/phone/" method="post">
-                  {{ csrf_field() }}
-                  <input name="id" type="hidden" value="{{$item->id}}" >
-                  <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
-  </form>
+            <form action="/delete/backMap" method="post">
+                            {{ csrf_field() }}
+                            <input name="name" type="hidden" value="{{$item->name}}" >
+                            <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+            </form>
   </div>
   <hr>
   @php
