@@ -159,9 +159,6 @@ background: black;
         <div class="col-10 text-center">
         <p>{{  $item->name }}</p>
         </div>
-        <div class="col-10 text-center">
-        <p>{{  $item->url }}</p>
-        </div>
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#{{$modal}}IM2">
                 🖊️
@@ -188,16 +185,8 @@ background: black;
                           </div>
         
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
-                          </div>
-                          <br>
-                          <div class="m-12">
-                            <div class="row">
-                              <div class="col-12">
-                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
-                              </div>
-                            </div>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" aria-valuetext="{{$item->url}}"></textarea>
+
                           </div>
                           <br>
                           <div class="modal-footer m-12">
@@ -241,9 +230,6 @@ $mnum++
         <p>{{  $item->name }}</p>
         </div>
         
-        <div class="col-10 text-center">
-            <p>{{  $item->url }}</p>
-            </div>
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
                 🖊️
@@ -270,16 +256,16 @@ $mnum++
                           </div>
         
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
-                          </div>
-                          <br>
-                          <div class="m-12">
-                            <div class="row">
-                              <div class="col-12">
-                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
-                              </div>
-                            </div>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name" value="{{$item->name}}">
+                    </div>
+                    <br>
+                    <div class="m-12">
+                      <div class="row">
+                        <div class="col-12">
+                          <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                        </div>
+                      </div>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" aria-valuetext="{{$item->url}}"></textarea>
                           </div>
                           <br>
                           <div class="modal-footer m-12">
@@ -333,9 +319,6 @@ $mnum++
         <p>{{  $item->name }}</p>
         </div>
         
-        <div class="col-10 text-center">
-            <p>{{  $item->url }}</p>
-            </div>
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
                 🖊️
@@ -363,16 +346,16 @@ $mnum++
                           </div>
         
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
-                          </div>
-                          <br>
-                          <div class="m-12">
-                            <div class="row">
-                              <div class="col-12">
-                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
-                              </div>
-                            </div>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="name" value="{{$item->name}}">
+                    </div>
+                    <br>
+                    <div class="m-12">
+                      <div class="row">
+                        <div class="col-12">
+                          <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                        </div>
+                      </div>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" aria-valuetext="{{$item->url}}"></textarea>
                           </div>
                           <br>
                           <div class="modal-footer m-12">
@@ -417,9 +400,6 @@ $mnum++
           <p>{{  $item->name }}</p>
           </div>
           
-        <div class="col-10 text-center">
-            <p>{{  $item->url }}</p>
-            </div>
           <div class="col-1">
               <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."IM2" ?>">
                   🖊️
@@ -447,7 +427,7 @@ $mnum++
                     </div>
   
                   </div>
-                  <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
+                  <input type="text" class="form-control" aria-label="Text input with checkbox" name="name" value="{{$item->name}}">
                     </div>
                     <br>
                     <div class="m-12">
@@ -456,7 +436,7 @@ $mnum++
                           <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
                         </div>
                       </div>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" placeholder=""></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="url" size="100" aria-valuetext="{{$item->url}}"></textarea>
                     </div>
                     <br>
                     <div class="modal-footer m-12">

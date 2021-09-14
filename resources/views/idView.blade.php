@@ -210,7 +210,7 @@ body{
 
                             <div class="container">
                               
-                                <form method="post"  action="">
+                                <form method="post"  action="/backID/Bupdate">
                             {{ csrf_field() }}
                             <input type="hidden" name="Ocode" value="{{$item->code}}">
                             <div class="m-12">

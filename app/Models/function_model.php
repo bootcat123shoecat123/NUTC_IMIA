@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class function_model extends Model
 {
     use HasFactory;
+    public $timestamps = FALSE;
     protected $table="message";
     protected $primaryKey = 'msgIn';
     protected $keyType = 'string';
