@@ -52,8 +52,15 @@ background: black;
             <div class="row flex-nowrap">
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
+        <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
             <div class="position-fixed text-white container">
+              <a class="h2 text-white">QnA</a>
+              <ul class="nav navbar-nav text-white">
+               <li ><a href="/backTeach">教師資訊</a></li>
+               <li ><a href="/backID">樓層資訊</a></li>
+               <li ><a href="/backMap">課程地圖</a></li>
+               <li ><a href="/backFun">功能</a></li>
+              </ul>
                 <a class="h2 text-white">Database</a>
                <ul class="nav navbar-nav text-white">
                 <li ><a href="/place">處室位置</a></li>

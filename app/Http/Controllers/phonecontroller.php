@@ -210,14 +210,14 @@ class phonecontroller extends Controller
 
             echo("</table>");*/
             $singleQA=[];
-            if($R->id!=null){
+            if($R!=null){
             foreach($re["qnaDocuments"] as $singleQA){
                 if($singleQA->id==$R->id){
                     break;
                 }
             }
         }
-        if($R->id!=null){
+        if($R!=null){
         return view('phoneView',[
             'QAphone'=>$re["qnaDocuments"],
             'Q'=>$singleQA,

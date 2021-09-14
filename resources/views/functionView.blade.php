@@ -119,15 +119,10 @@ body{
         <div class="col-3 text-center">
             <p>{{  $item->msgIn }}</p>
             </div>
-            <div class="col-3 text-center">
+            <div class="col-5 ">
                 <p>{{  $item->msgOut }}</p>
                 </div>
-                <div class="col-3 text-center">
-                    <p>{{  $item->mark }}</p>
-                    </div>
-                    <div class="col-3 text-center">
-                        <p>{{  $item->mark }}</p>
-                        </div>
+                    
      
 
 
@@ -243,15 +238,10 @@ $mnum++
         <div class="col-3 text-center">
             <p>{{  $item->msgIn }}</p>
             </div>
-            <div class="col-3 text-center">
+            <div class="col-5 ">
                 <p>{{  $item->msgOut }}</p>
                 </div>
-                <div class="col-3 text-center">
-                    <p>{{  $item->mark }}</p>
-                    </div>
-                    <div class="col-3 text-center">
-                        <p>{{  $item->mark }}</p>
-                        </div>
+                   
      
 
 
@@ -365,15 +355,10 @@ $mnum++
         <div class="col-3 text-center">
         <p>{{  $item->msgIn }}</p>
         </div>
-        <div class="col-3 text-center">
+        <div class="col-5 ">
             <p>{{  $item->msgOut }}</p>
             </div>
-            <div class="col-3 text-center">
-                <p>{{  $item->mark }}</p>
-                </div>
-                <div class="col-3 text-center">
-                    <p>{{  $item->mark }}</p>
-                    </div>
+                
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."Bu" ?>">
                 🖊️
