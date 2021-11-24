@@ -8,7 +8,7 @@ class topControll extends Controller
 {
     //
     function question(Request $R){
-       return($this->show($R->id));
+       return($this->show($R));
     }
 
     function update($id,Request $R){
@@ -171,7 +171,7 @@ class topControll extends Controller
         curl_close($curl);
         return $response;
     }
-    function show(string $id=null){
+    function show(Request $R=null){
         $r="";
         $url="";
         $key="";
@@ -212,18 +212,19 @@ class topControll extends Controller
 
             echo("</table>");*/
             $singleQA=[];
-            if($id!=null){
+            if($R!=null){
             foreach($re["qnaDocuments"] as $singleQA){
-                if($singleQA->id==$id){
+                if($singleQA->id==$R->id){
                     break;
                     
                 }
             }
         }
-        if($id!=null){
+        if($R!=null){
         return view('welcome',[
             'QAplace'=>$re["qnaDocuments"],
-            'Q'=>$singleQA
+            'Q'=>$singleQA,
+            'num'=>$R->num
             ]);
         }else{
         return view('welcome',[

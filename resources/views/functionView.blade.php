@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -18,6 +19,7 @@
             tr:nth-of-type(odd) td form .blocker{
     background: #6798C0;
     border-color: rgb(153, 214, 234);
+
 }
 tr:nth-of-type(even) td form .blocker{
     background: rgb(153, 214, 234);
@@ -40,9 +42,18 @@ background: black;
     top:0%;
     left: 0%;
 }
+a {
+    color:white;
+}
 body{
     　overflow-x: hidden;
 }
+.A{
+  display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
         </style>
     </head>
     
@@ -50,24 +61,26 @@ body{
     
     <body class="antialiased"> 
         <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
-            <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#" style="color: white">後台</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                
+                <li >&nbsp;<a href="/backTeach">教師資訊   </a>&nbsp;</li>
+                <li >&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
+                <li >&nbsp;<a href="/backMap">課程地圖</a>&nbsp;</li>
+                <li >&nbsp;<a href="/backFun">功能說明</a>&nbsp;</li>
+                <li >&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
+                <li >&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
               </ul>
               
             </div>
           </nav>
 <div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
+    <div class="row flex-nowrap A">
+        {{-- <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
             <div class="position-fixed text-white container">
               <a class="h2 text-white">QnA</a>
               <ul class="nav navbar-nav text-white">
@@ -82,18 +95,20 @@ body{
                 <li class="active"><a href="/phone">聯絡方式</a></li>
               </ul>
             </div>
-        </div>
+        </div> --}}
     
-        <div class="col-10 ml-5">
+        <div class="col-10">
             <br>
-            <div class="row align-self-center ml-5">
+            <div class="row A">
       
-            <h5 class="col-10"><strong>功能介紹</strong></h5>
+            <h4 ><strong>功能介紹</strong></h4>
             
      </div>
-   
+     
         <div class="container-fluid border border-light rounded">
-            <div class="row mt-3">
+          <div style="border-color:#FBE251; border-style:solid;border-radius:2vh;}">
+            <div class="row mt-3  A">
+              
                 <div class="col-3 text-center">
                     <strong>功能表單</strong>
                     <hr>
@@ -115,18 +130,20 @@ body{
      @php
          $modal = "exampleModal".(string)$mnum;
      @endphp
-     <div class="row">
+     <div class="row A">
         <div class="col-3 text-center">
-            <p>{{  $item->msgIn }}</p>
-            </div>
-            <div class="col-5 ">
-                <p>{{  $item->msgOut }}</p>
-                </div>
-                    
+        <p>{{  $item->msgIn }}</p>
+        </div>
+        <div class="col-4">
+        <span>{!! $item->msgOut!!}</span>
+        </div>
+        <div class="col-1">
+
+          </div>
      
 
 
-        <div class="col-1">
+        <div class="col-">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."ri" ?>">
                 🖊️
                 </button>
@@ -142,50 +159,33 @@ body{
                 <div class="modal-body">
 
                 <div class="container">
-                    <form method="post"  action="/backMap/Fupdate">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="OmsgIn">
-                        <div class="m-12">
-                         <div class="row">
-                          <div class="col-12">
-                            <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">msgIn</label>
-                          </div>
-        
-                        </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="msgIn">
-                          </div>
-                          <br>
-                          <div class="m-12">
-                            <div class="row">
-                             <div class="col-12">
-                               <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">msgOut</label>
-                             </div>
-           
-                           </div>
-                           <input type="text" class="form-control" aria-label="Text input with checkbox" name="msgOut">
-                             </div>
-                             <br>
-                             <div class="m-12">
-                                <div class="row">
-                                 <div class="col-12">
-                                   <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">mark</label>
-                                 </div>
-               
-                               </div>
-                               <input type="text" class="form-control" aria-label="Text input with checkbox" name="mark">
-                                 </div>
-                                 <br>
-                                 <div class="m-12">
-                                    <div class="row">
-                                     <div class="col-12">
-                                       <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">sort</label>
-                                     </div>
-                   
-                                   </div>
-                                   <input type="text" class="form-control" aria-label="Text input with checkbox" name="sort">
-                                     </div>
-                                     <br>
-                        </form>
+                  
+                    <form method="post"  action="/backFun/Fupdate">
+                      {{-- 編輯功能表單 --}}
+                {{ csrf_field() }}
+                <div class="m-12">
+              <div class="row">
+                  <div class="col-12">
+                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">功能表單</label>
+                  </div>
+
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" >
+                  </div>
+                  <br>
+                  <div class="m-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">使用說明</label>
+                      </div>
+                    </div>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
+                  </div>
+                  <br>
+                  <div class="modal-footer m-12">
+                    <input class="btn btn-primary pull-bottom w-100" type="submit">
+                  </div>
+                </form>
 
               
                 
@@ -196,11 +196,12 @@ body{
     </div>
         </div>
         <div class="col-1">
-            <form action="/delete/backFun" method="post">
-                            {{ csrf_field() }}
-                            <input name="msgIn" type="hidden" value="{{$item->msgIn}}" >
-                            <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
-            </form>
+<form action="/delete/backFun" method="post">
+  {{-- 刪除功能表單 --}}
+                {{ csrf_field() }}
+                <input name="id" type="hidden" value="{{$item->id}}" >
+                <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+</form>
 </div>
 
 @php
@@ -210,9 +211,10 @@ $mnum++
 @endforeach
 
         </div>
-
+<br><br>
         <div class="container-fluid border border-light rounded">
-            <div class="row mt-3">
+          <div style="border-color:#BEC23F; border-style:solid;border-radius:2vh;}">
+            <div class="row mt-3 A">
                 <div class="col-3 text-center">
                     <strong>CARD名稱</strong>
                     <hr>
@@ -234,14 +236,13 @@ $mnum++
      @php
          $modal = "exampleModal".(string)$mnum;
      @endphp
-     <div class="row">
+     <div class="row A">
         <div class="col-3 text-center">
-            <p>{{  $item->msgIn }}</p>
-            </div>
-            <div class="col-5 ">
-                <p>{{  $item->msgOut }}</p>
-                </div>
-                   
+        <p>{{  $item->msgIn }}</p>
+        </div>
+        <div class="col-5 ">
+        <span>{!! $item->msgOut!!}</span>
+        </div>
      
 
 
@@ -261,50 +262,34 @@ $mnum++
                 <div class="modal-body">
 
                 <div class="container">
-                    <form method="post"  action="/backMap/Mupdate">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="OmsgIn">
-                        <div class="m-12">
-                         <div class="row">
-                          <div class="col-12">
-                            <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">msgIn</label>
-                          </div>
-        
-                        </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox" name="msgIn">
-                          </div>
-                          <br>
-                          <div class="m-12">
-                            <div class="row">
-                             <div class="col-12">
-                               <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">msgOut</label>
-                             </div>
-           
-                           </div>
-                           <input type="text" class="form-control" aria-label="Text input with checkbox" name="msgOut">
-                             </div>
-                             <br>
-                             <div class="m-12">
-                                <div class="row">
-                                 <div class="col-12">
-                                   <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">mark</label>
-                                 </div>
-               
-                               </div>
-                               <input type="text" class="form-control" aria-label="Text input with checkbox" name="mark">
-                                 </div>
-                                 <br>
-                                 <div class="m-12">
-                                    <div class="row">
-                                     <div class="col-12">
-                                       <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">sort</label>
-                                     </div>
-                   
-                                   </div>
-                                   <input type="text" class="form-control" aria-label="Text input with checkbox" name="sort">
-                                     </div>
-                                     <br>
-                        </form>
+                  
+                    <form method="post"  action="">
+                      {{-- 編輯CARD名稱 --}}
+                {{ csrf_field() }}
+                <div class="m-12">
+              <div class="row">
+                  <div class="col-12">
+                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
+                  </div>
+
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" >
+                  </div>
+                  <br>
+                  <div class="m-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                      </div>
+                    </div>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
+                  </div>
+                  <br>
+                  <div class="modal-footer m-12">
+                    <input class="btn btn-primary pull-bottom w-100" type="submit">
+                  </div>
+                </form>
+
               
                 
             </div>
@@ -314,11 +299,12 @@ $mnum++
     </div>
         </div>
         <div class="col-1">
-            <form action="/delete/backFun" method="post">
-                            {{ csrf_field() }}
-                            <input name="msgIn" type="hidden" value="{{$item->msgIn}}" >
-                            <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
-            </form>
+<form action="" method="post">
+   {{-- 刪除CARD名稱 --}}
+                {{ csrf_field() }}
+                <input name="id" type="hidden" value="{{$item->id}}" >
+                <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+</form>
 </div>
 
 @php
@@ -328,8 +314,10 @@ $mnum++
 @endforeach
 
         </div>
+        <br><br>
         <div class="container-fluid border border-light rounded">
-            <div class="row mt-3">
+          <div style="border-color:#FFB11B; border-style:solid;border-radius:2vh;}">
+            <div class="row mt-3 A">
                 <div class="col-3 text-center">
                     <strong>資管介紹</strong>
                     <hr>
@@ -351,14 +339,16 @@ $mnum++
      @php
          $modal = "exampleModal".(string)$mnum;
      @endphp
-     <div class="row">
+     <div class="row A">
         <div class="col-3 text-center">
         <p>{{  $item->msgIn }}</p>
         </div>
         <div class="col-5 ">
-            <p>{{  $item->msgOut }}</p>
-            </div>
-                
+        <span>{!! $item->msgOut!!}</span>
+        </div>
+     
+
+
         <div class="col-1">
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="<?php echo "#".$modal."Bu" ?>">
                 🖊️
@@ -376,49 +366,30 @@ $mnum++
 
                 <div class="container">
                   
-                    <form method="post"  action="/backMap/Mupdate">
+                    <form method="post"  action="">
                 {{ csrf_field() }}
-                <input type="hidden" name="OmsgIn">
                 <div class="m-12">
-                 <div class="row">
+              <div class="row">
                   <div class="col-12">
-                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">msgIn</label>
+                    <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">名稱</label>
                   </div>
 
                 </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" name="msgIn">
+                <input type="text" class="form-control" aria-label="Text input with checkbox" >
                   </div>
                   <br>
                   <div class="m-12">
                     <div class="row">
-                     <div class="col-12">
-                       <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">msgOut</label>
-                     </div>
-   
-                   </div>
-                   <input type="text" class="form-control" aria-label="Text input with checkbox" name="msgOut">
-                     </div>
-                     <br>
-                     <div class="m-12">
-                        <div class="row">
-                         <div class="col-12">
-                           <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">mark</label>
-                         </div>
-       
-                       </div>
-                       <input type="text" class="form-control" aria-label="Text input with checkbox" name="mark">
-                         </div>
-                         <br>
-                         <div class="m-12">
-                            <div class="row">
-                             <div class="col-12">
-                               <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">sort</label>
-                             </div>
-           
-                           </div>
-                           <input type="text" class="form-control" aria-label="Text input with checkbox" name="sort">
-                             </div>
-                             <br>
+                      <div class="col-12">
+                        <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">詳情</label>
+                      </div>
+                    </div>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="A" size="100" placeholder=""></textarea>
+                  </div>
+                  <br>
+                  <div class="modal-footer m-12">
+                    <input class="btn btn-primary pull-bottom w-100" type="submit">
+                  </div>
                 </form>
 
               
@@ -430,9 +401,9 @@ $mnum++
     </div>
         </div>
         <div class="col-1">
-<form action="/delete/backFun" method="post">
+<form action="/delete/phone/" method="post">
                 {{ csrf_field() }}
-                <input name="msgIn" type="hidden" value="{{$item->msgIn}}" >
+                <input name="id" type="hidden" value="{{$item->id}}" >
                 <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
 </form>
 </div>

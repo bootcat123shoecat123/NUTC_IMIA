@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -20,6 +19,7 @@
             tr:nth-of-type(odd) td form .blocker{
     background: #6798C0;
     border-color: rgb(153, 214, 234);
+
 }
 tr:nth-of-type(even) td form .blocker{
     background: rgb(153, 214, 234);
@@ -42,6 +42,14 @@ background: black;
     top:0%;
     left: 0%;
 }
+.A{
+  display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+a {
+    color:white;
+}
 body{
     　overflow-x: hidden;
 }
@@ -51,47 +59,53 @@ body{
    
     
     <body class="antialiased"> 
-        <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+      <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
+        <a class="navbar-brand" href="#" style="color: white">後台</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li >&nbsp;<a href="/backTeach">教師資訊   </a>&nbsp;</li>
+            <li >&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
+            <li >&nbsp;<a href="/backMap">課程地圖</a>&nbsp;</li>
+            <li >&nbsp;<a href="/backFun">功能說明</a>&nbsp;</li>
+            <li >&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
+            <li >&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
+          </ul>
           
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                
-              </ul>
-              
-            </div>
-          </nav>
+        </div>
+      </nav>
 <div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
+    <div class="row flex-nowrap A">
+     
+        {{-- <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
             <div class="position-fixed text-white container">
               <a class="h2 text-white">QnA</a>
               <ul class="nav navbar-nav text-white">
                <li ><a href="/backTeach">教師資訊</a></li>
-               <li ><a href="/backID">樓層資訊</a></li>
-               <li ><a href="/backMap">課程地圖</a></li>
-               <li ><a href="/backFun">功能</a></li>
+               <li ><a href="/place">處室位置</a></li>
+               <li class="active"><a href="/phone">聯絡方式</a></li>
               </ul>
                 <a class="h2 text-white">Database</a>
                <ul class="nav navbar-nav text-white">
-                <li ><a href="/place">處室位置</a></li>
-                <li class="active"><a href="/phone">聯絡方式</a></li>
+                <li ><a href="/backID">樓層資訊</a></li>
+                <li ><a href="/backMap">課程地圖</a></li>
+                <li ><a href="/backFun">功能</a></li>
+                
               </ul>
             </div>
-        </div>
-    
-        <div class="col-8 ml-5">
+        </div> --}}
+    {{-- 大樓編號 --}}
+        <div class="col-10">
             <br>
-     <div class="row">
+
+     <div class="row A">
+      <h4 class="ml-5 pl-5"><strong>&nbsp;&nbsp;大樓編號</strong></h4>
          <br>
          <hr>
-            <h5 class="col-7 pull-right"><strong>大樓編號</strong></h5>
+           
             <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModalBu">
                 新增大樓編號
                 </button>
@@ -108,6 +122,7 @@ body{
                       </div>
                       <div class="modal-body">
                         <form method="post"  action="/createB/backID" >
+                          {{-- 新增大樓 --}}
                             {{ csrf_field() }}
                             <div class="m-3">
                           <div class="row">
@@ -116,7 +131,7 @@ body{
                               </div>
 
                             </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox" name="code">
+                            <input type="text" class="form-control" aria-label="Text input with checkbox">
                               </div>
                               <div class="m-3">
                                 <div class="row">
@@ -124,18 +139,18 @@ body{
                                     <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">建築名稱</label>
                                   </div>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
+                                <input type="text" class="form-control" aria-label="Text input with checkbox">
                               </div>
                               <div class="row m-3">
                                 <div class="form-check form-check-inline">
                                 
                                   <label for="exampleFormControlTextarea1" class="col-4 p-0 m-0" style="font-size:2vh;text-align: left">校區：</label>
                                     <div class="col-4 form-check form-check-inline">
-                                      <input class="form-check-input" type="radio" name="campus" id="inlineRadio1" value="民生">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="民生">
                                       <label class="form-check-label" for="inlineRadio1">民生</label>
                                     </div>
                                     <div class="col-4 form-check form-check-inline">
-                                      <input class="form-check-input" type="radio" name="campus" id="inlineRadio2" value="三民">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="三民">
                                       <label class="form-check-label" for="inlineRadio2">三民</label>
                                     </div>
                                   
@@ -154,8 +169,11 @@ body{
                   </div>
                 </div>
      </div>
+     <br>
+     {{-- 大樓一覽 --}}
         <div class="row align-self-center ml-5 pl-5">
                 <div class="container-fluid border border-light rounded">
+                  <div style="border-color:#FBE251; border-style:solid;border-radius:2vh;}">
                     <div class="row mt-3">
                         <div class="col-2 text-center">
                             <strong>代碼</strong>
@@ -212,7 +230,6 @@ body{
                               
                                 <form method="post"  action="/backID/Bupdate">
                             {{ csrf_field() }}
-                            <input type="hidden" name="Ocode" value="{{$item->code}}">
                             <div class="m-12">
                           <div class="row">
                               <div class="col-12">
@@ -220,7 +237,7 @@ body{
                               </div>
 
                             </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox" name="code">
+                            <input type="text" class="form-control" aria-label="Text input with checkbox" >
                               </div>
                               <br>
                               <div class="m-12">
@@ -229,7 +246,7 @@ body{
                                     <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">建築名稱</label>
                                   </div>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
+                                <input type="text" class="form-control" aria-label="Text input with checkbox">
                               </div>
                               <br>
                               <div class="m-12">
@@ -237,11 +254,11 @@ body{
                                 
                                   <label for="exampleFormControlTextarea1" class="col-4 p-0 m-0" style="font-size:2vh;text-align: left">校區：</label>
                                     <div class="col-4 form-check form-check-inline">
-                                      <input class="form-check-input" type="radio" name="campus" id="inlineRadio1" value="民生">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="民生">
                                       <label class="form-check-label" for="inlineRadio1">民生</label>
                                     </div>
                                     <div class="col-4 form-check form-check-inline">
-                                      <input class="form-check-input" type="radio" name="campus" id="inlineRadio2" value="三民">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="三民">
                                       <label class="form-check-label" for="inlineRadio2">三民</label>
                                     </div>
                                   
@@ -262,9 +279,10 @@ body{
                 </div>
                     </div>
                     <div class="col-1">
-                        <form action="/deleteB/backID" method="post">
+            <form action="/deleteB/backID" method="post">
+              {{-- 刪除大樓 --}}
                             {{ csrf_field() }}
-                            <input name="code" type="hidden" value="{{$item->code}}" >
+                            <input name="id" type="hidden" value="{{$item->id}}" >
                             <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
             </form>
             </div>
@@ -276,11 +294,16 @@ body{
         @endforeach
         </div>
             </div>
-            <br>
-            <div class="row ml-1">
+        <br>
+            <div class="col-11">
+              <br>
+              <div class="row A">
+              <br>
+    
+              <h4 class="ml-5"><strong>&nbsp;&nbsp;辦公室編號</strong></h4>
               <br>
               <hr>
-                <h5 class="col-7"><strong>辦公室編號</strong></h5>
+                
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModalOf">
                   新增辦公室編號
                   </button>
@@ -305,7 +328,7 @@ body{
                               </div>
 
                             </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox" name="code">>
+                            <input type="text" class="form-control" aria-label="Text input with checkbox">
                               </div>
                               <div class="m-3">
                                 <div class="row">
@@ -313,7 +336,7 @@ body{
                                     <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">辦公室名稱</label>
                                   </div>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">>
+                                <input type="text" class="form-control" aria-label="Text input with checkbox">
                               </div>
                 
                               <br>
@@ -327,14 +350,17 @@ body{
                       </div>
                     </div>
                   </div>
+                  <br> <br> <br> <br>
                     <div class="row align-self-center ml-5 pl-5 col-11">
+                      <br>
                       <div class="container-fluid border border-light rounded">
+                        <div style="border-color:#BEC23F; border-style:solid;border-radius:2vh;}">
                           <div class="row mt-3 m1-2">
                               <div class="col-4 text-center">
                                   <strong>代碼</strong>
                                   <hr>
                               </div>
-                              <div class="col-6 text-center">
+                              <div class="col-5 text-center">
                                   <strong>辦公室名稱</strong>
                                   <hr>
                               </div>
@@ -356,7 +382,7 @@ body{
                           <p>{{  $item->code }}</p>
                           </div>
                       
-                          <div class="col-6 text-center">
+                          <div class="col-5 text-center">
                           <span>{{ $item->name}}</span>
                           </div>
        
@@ -376,10 +402,9 @@ body{
                                   <div class="modal-body">
                                   <div class="container">
                                     
-                                        <form method="post"  action="">
+                                        <form method="post"  action="/backID/Oupdate">
+                                             {{-- 編輯辦公室編號 --}}
                                           {{ csrf_field() }}
-                                          <input type="hidden" name="Oname" value="{{$item->name}}">
-                                          <input type="hidden" name="Ocode" value="{{$item->code}}">
                                           <div class="m-12">
                                         <div class="row">
                                             <div class="col-12">
@@ -387,7 +412,7 @@ body{
                                             </div>
               
                                           </div>
-                                          <input type="text" class="form-control" aria-label="Text input with checkbox" name="code">
+                                          <input type="text" class="form-control" aria-label="Text input with checkbox" >
                                             </div>
                                             <br>
                                             <div class="m-12">
@@ -396,7 +421,7 @@ body{
                                                   <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">建築名稱</label>
                                                 </div>
                                               </div>
-                                              <input type="text" class="form-control" aria-label="Text input with checkbox" name="name">
+                                              <input type="text" class="form-control" aria-label="Text input with checkbox">
                                             </div>
                                             <br>
                                      
@@ -415,8 +440,9 @@ body{
                           </div>
                           <div class="col-1">
                   <form action="/deleteO/backID" method="post">
+                    {{-- 刪除辦公室編號 --}}
                                   {{ csrf_field() }}
-                                  <input name="code" type="hidden" value="{{$item->code}}" >
+                                  <input name="id" type="hidden" value="{{$item->id}}" >
                                   <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
                   </form>
                   </div>

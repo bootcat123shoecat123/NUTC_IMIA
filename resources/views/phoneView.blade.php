@@ -42,32 +42,55 @@ background: black;
     top:0%;
     left: 0%;
 }
+a {
+    color:white;
+}
         </style>
     </head>
     
    
     
     <body class="antialiased"> 
-        <div class="container-fluid">
-            <div class="row flex-nowrap">
+      <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
+        <a class="navbar-brand" href="#" style="color: white">後台</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto">
+              <li >&nbsp;<a href="/backTeach">教師資訊   </a>&nbsp;</li>
+              <li >&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
+              <li >&nbsp;<a href="/backMap">課程地圖</a>&nbsp;</li>
+              <li >&nbsp;<a href="/backFun">功能說明</a>&nbsp;</li>
+              <li >&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
+              <li >&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
+            </ul>
+            
+            
+          </ul>
+          
+        </div>
+      </nav>
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
-            <div class="position-fixed text-white container">
-              <a class="h2 text-white">QnA</a>
-              <ul class="nav navbar-nav text-white">
-               <li ><a href="/backTeach">教師資訊</a></li>
-               <li ><a href="/backID">樓層資訊</a></li>
-               <li ><a href="/backMap">課程地圖</a></li>
-               <li ><a href="/backFun">功能</a></li>
-              </ul>
-                <a class="h2 text-white">Database</a>
-               <ul class="nav navbar-nav text-white">
-                <li ><a href="/place">處室位置</a></li>
-                <li class="active"><a href="/phone">聯絡方式</a></li>
-              </ul>
-            </div>
+      {{-- <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
+        <div class="position-fixed text-white container">
+          <a class="h2 text-white">QnA</a>
+          <ul class="nav navbar-nav text-white">
+           <li ><a href="/backTeach">教師資訊</a></li>
+           <li ><a href="/backID">樓層資訊</a></li>
+           <li ><a href="/backMap">課程地圖</a></li>
+           <li ><a href="/backFun">功能</a></li>
+         </ul>
+            <a class="h2 text-white">Database</a>
+           <ul class="nav navbar-nav text-white">
+            <li ><a href="/place">處室位置</a></li>
+            <li class="active"><a href="/phone">聯絡方式</a></li>
+          </ul>
         </div>
+    </div> --}}
 
         <div class="col-6 ml-5">
            <!-- Button trigger modal -->
@@ -146,14 +169,14 @@ background: black;
 
                     @foreach ($QAphone as $item)
                     @php
-                    $modal = "exampleModal".$mnum;
+                    $modal = "exampleModal".(string)$mnum;
                   @endphp
                     <div class="row">
                         <div class="col-1 text-center">
                             <a href="#{{$item->id}}"></a><td class="col-1 h2" scope="col" onclick="putid('phone',{{$item->id}})">{{$mnum}}</td>
                         </div>
                         <div class="col-3 text-center">
-                            <form action="/question/phone" method="post">{{ csrf_field() }} <input name="num" type="hidden" value="{{$mnum}}"> <input name="id" type="hidden" value="{{$item->id}}"><input class="btn btn-info w-100 blocker" type="submit" value="Questions"></form>
+                            <form action="/question/phone" method="post">{{ csrf_field() }}  <input name="id" type="hidden" value="{{$item->id}}"><input class="btn btn-info w-100 blocker" type="submit" value="Questions"></form>
                           
                         </div>
                         <div class="col-6">
@@ -204,8 +227,11 @@ background: black;
 </form>
 
                         </div>
-                    </div><input type=hidden value="{{
-                    $mnum++}}">
+                    </div>
+                  
+                    @php
+                    $mnum++
+                  @endphp
                     @endforeach
                 
                 </div>
@@ -219,24 +245,24 @@ background: black;
                     @if (isset($Q))
                     <table class="table pl-4">
                         <tr class="row ">
-                            <th class="col-1 w-80" scope="col">{{$num}}</th>
+                            <th class="col-1 w-80" scope="col">{{$mnum}}</th>
                             <th class="col-1 w-80" scope="col">
                               {{-- <input type="button" onclick="putid('phone',{{$Q->id}})" value="新增sdasd問句" class="btn btn-outline-success pull-right w-100 ls2" > --}}
                                                   <!-- Button trigger modal -->
                                                   {{-- @php
                                                   $modal2 = "exampleModal".(string)$Q->id;
                                                 @endphp --}}
-<button type="button" class="btn btn-outline-info pull-right ls3" data-toggle="modal" data-target="<?php echo '#exampleModal'.$num ?>">
+<button type="button" class="btn btn-outline-info pull-right ls3" data-toggle="modal" data-target="<?php echo '#exampleModal'.$Q->id ?>">
   新增問題
 </button>
 
 <!-- Modal -->
-<div class="modal fade c0" id="exampleModal{{$num}}" tabindex="-1" role="dialog" aria-labelledby="#exampleModal{{$num}}Title" aria-hidden="true">
+<div class="modal fade c0" id="<?php echo 'exampleModal'.$Q->id ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo '#exampleModal'.$Q->id.'Title' ?>" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
       
-        <h5 class="modal-title" id="<?php echo 'exampleModal'.$num.'Title' ?>">{{$num}}</h5>
+        <h5 class="modal-title" id="<?php echo 'exampleModal'.$Q->id.'Title' ?>">{{$mnum}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
