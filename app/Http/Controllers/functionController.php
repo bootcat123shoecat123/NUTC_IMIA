@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\card_model;
 use App\Models\function_model;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,7 @@ class functionController extends Controller
             
         return redirect('/backFun');
     }
+   
     function updateF(Request $R){
         $recheck=$R->validate(
             [
@@ -60,9 +62,9 @@ class functionController extends Controller
     function show(){
         #report coursemap's name、url
         $cline=(Object)[
-            'coursemap'=>function_model::where('sort',"coursemap")->get(),
-            'richmanu'=>function_model::where('sort',"richmanu")->get(),
-            'introduce'=>function_model::where('sort',"introduce")->get()
+            #'coursemap'=>function_model::where('sort',"coursemap")->join("card","message.msgIn","=","card.enter")->select('message.msgIn','card.title','card.text')->get(),
+            'richmanu'=>function_model::where('sort',"richmanu")->where('mark','!=','card')->get(),
+            'introduce'=>function_model::where('sort',"introduce")->where('mark','!=','card')->get()
         ];
         return view('functionView',[
             'value'=>$cline

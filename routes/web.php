@@ -8,6 +8,7 @@ use App\Http\Controllers\topControll;
 use App\Http\Controllers\phonecontroller;
 use App\Http\Controllers\teachController;
 use App\Http\Controllers\mapController;
+use App\Http\Controllers\cardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,10 +53,14 @@ Route::post('/backFun/Fupdate',[functionController::class,'updateF']);
 Route::post('/delete/backFun',[functionController::class,'deleteF']);
 Route::post('/create/backFun',[functionController::class,'createF']);
 
+
+Route::post('/backFun/Cupdate',[cardController::class,'updateC']);
+
 Route::post('/backMap/Mupdate',[mapController::class,'updateM']);
 Route::post('/delete/backMap',[mapController::class,'deleteM']);
 Route::post('/create/backMap',[mapController::class,'createM']);
 
+Route::get('/backCard', [cardController::class,'show']);
 Route::get('/backFun', [functionController::class,'show']);
 Route::get('/backTeach', [teachController::class,'show']);
 Route::get('/backMap', [mapController::class,'show']);
