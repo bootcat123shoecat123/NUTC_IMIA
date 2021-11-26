@@ -73,6 +73,7 @@ a {
                 <li >&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
                 <li >&nbsp;<a href="/backMap">課程地圖</a>&nbsp;</li>
                 <li >&nbsp;<a href="/backFun">功能說明</a>&nbsp;</li>
+                <li>&nbsp;<a href="/backCard">Card</a>&nbsp;</li>
                 <li >&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
                 <li >&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
               </ul>
