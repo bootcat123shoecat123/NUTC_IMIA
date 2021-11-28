@@ -59,6 +59,13 @@
         body {
             overflow-x: hidden;
         }
+        input[type=submit] {
+   
+    background:#6798C0; 
+    border:0 none;
+  color: rgb(255, 255, 255);
+  
+}
 
         /* .dialog-left {
     background: #888888;
@@ -103,11 +110,8 @@
 } */
 
         .dialogue {
-            padding-left: 3vw;
-            padding-top: 3vw;
+           padding: 3vw;
            height:94vh ;
-width: 79vw;
-
         }
 
         .user .avatar {
@@ -122,7 +126,29 @@ width: 79vw;
             font-family: "Noto Sans TC", sans-serif;
             align-items: flex-start;
         }
+        .userd {
+            display: flex;
+            margin-bottom: 1vw;
+            font-family: "Noto Sans TC", sans-serif;
+            align-items: flex-start;
+        }
+        .userd .pic {
+            position: relative;
+            width: 10vh;
+            height: 10vh;
+            overflow: hidden;
+            border-radius: 50%;
+        }
 
+        .userd .pic img {
+            width: 100%;
+            vertical-align: middle;
+        }
+        .userd .txt {
+      
+            padding: 2vw;
+            position: relative;
+        }
         .user .pic {
             position: relative;
             width: 10vh;
@@ -148,20 +174,14 @@ width: 79vw;
             margin-left: 2vw;
             margin-right: 23vw;
         }
-.local{
-    
-}
+
         .local .txt {
-            margin-right:2vw ;
-            margin-left:53vw ;
-            order: -1;
-            width: 300px;
-            background: #202521;
-           
+            margin-left: 20px;
+            margin-right: 80px;
         }
-        /* .user .ans{
-            background-color: #202521;
-        } */
+        .user .ans{
+            background-color: #58dc75;
+        }
         
         .remove .txt::before {
             content: '';
@@ -179,60 +199,14 @@ width: 79vw;
             top: 10px;
             border-top: 3vw solid transparent;
             border-bottom: 3vw solid transparent;
-            border-right: 10px solid #4b7253;
+            border-right: 10px solid #58dc75;
             left: -10px;
         }
-        .local .txt::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 10px solid #202521;
-            right: -10px;
+        .remove .ans::after {
             
+            display: block;
         }
-        .local .txt::after {
-            display: none;
-            content: '';
-            position: absolute;
-            top: 10px;
-            border-top: 3vw solid transparent;
-            border-bottom: 3vw solid transparent;
-            border-left: 10px solid #202521;
-            left: -10px;
-        }
-   
-        .userd {
-            display: flex;
-            margin-bottom: 1vw;
-            font-family: "Noto Sans TC", sans-serif;
-            align-items: flex-start;
-        }
-        .userd .pic {
-            position: relative;
-            width: 10vh;
-            height: 10vh;
-            overflow: hidden;
-            border-radius: 50%;
-        }
-
-        .userd .pic img {
-            width: 100%;
-            vertical-align: middle;
-        }
-        .userd .txt {
-      
-            padding: 2vw;
-            position: relative;
-        }
-        input[type=submit] {
-   
-            background:#6798C0; 
-            border:0 none;
-            color: rgb(255, 255, 255);
-            
-}
+       
     </style>
 </head>
 
@@ -263,32 +237,17 @@ width: 79vw;
     </nav>
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            {{-- <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
-            <div class="position-fixed text-white container">
-              <a class="h2 text-white">QnA</a>
-              <ul class="nav navbar-nav text-white">
-               <li ><a href="/backTeach">教師資訊</a></li>
-               <li ><a href="/backID">樓層資訊</a></li>
-               <li ><a href="/backMap">課程地圖</a></li>
-               <li ><a href="/backFun">功能</a></li>
-             </ul>
-                <a class="h2 text-white">Database</a>
-               <ul class="nav navbar-nav text-white">
-                <li ><a href="/place">處室位置</a></li>
-                <li class="active"><a href="/phone">聯絡方式</a></li>
-              </ul>
-            </div>
-        </div> --}}
+     
 
-            <div class="col-3" style="border-color:black;border-style:solid;border-width:0px 2px 0px 0px;">
+            <div class="col-4" style="border-color:black;border-style:solid;border-width:0px 2px 0px 0px;">
 
 
                 <ul class="nav nav-tabs">
-                    <li class="nav-item btn-info">
-                        <a href="#todo" class="nav-link active" role="tab" data-toggle="tab">未回覆</a>
+                    <li class="nav-item btn-info ">
+                        <a href="#todo" class="nav-link active" role="tab" data-toggle="tab">&nbsp;&nbsp;未回覆&nbsp;&nbsp;</a>
                     </li>
-                    <li class="nav-item btn-info">
-                        <a href="#finish" class="nav-link" role="tab" data-toggle="tab">已回覆</a>
+                    <li class="nav-item btn-info ">
+                        <a href="#finish" class="nav-link" role="tab" data-toggle="tab">&nbsp;&nbsp;已回覆&nbsp;&nbsp;</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -298,18 +257,22 @@ width: 79vw;
 
                             @foreach ($question as $var)
                                 @if ($var->help == 1)
-                                    <div class="nav-link" id="v-pills-{{ $var->id }}-tab"
-                                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ $var->id }}"
-                                        type="button" role="tab" aria-controls="v-pills-{{ $var->id }}"
+                                    <div class="nav-link" id="v-pills-{{ $var->user }}-tab"
+                                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ $var->user }}"
+                                        type="button" role="tab" aria-controls="v-pills-{{ $var->user }}"
                                         aria-selected="true">
                                         <div class="userd">
 
                                             <!-- 對話的區域 -->
                                             <div class="pic">
                                                 <img src="{{ $var->pic }}">
+                                             
                                             </div>
-                                            <div class="name" style="margin:5px">{{ $var->userName }}</div>
-
+                                            <div class="name">{{ $var->userName }}</div>
+                                          
+                                            <div class="txt">
+                                                {{ $var->message }}
+                                            </div>
                                         </div>
                                     </div>
                                 @endif
@@ -322,19 +285,24 @@ width: 79vw;
                             aria-orientation="vertical">
 
                             @foreach ($question as $var)
-                                @if ($var->help == 4)
-                                    <div class="nav-link" id="v-pills-{{ $var->id }}-tab"
-                                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ $var->id }}"
-                                        type="button" role="tab" aria-controls="v-pills-{{ $var->id }}"
+                                @if ($var->help == 3)
+                                    <div class="nav-link" id="v-pills-{{ $var->user }}-tab"
+                                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ $var->user }}"
+                                        type="button" role="tab" aria-controls="v-pills-{{ $var->user }}"
                                         aria-selected="true">
-                                        <div class="userd">
+                                        <div class="user">
 
                                             <!-- 對話的區域 -->
                                             <div class="pic">
                                                 <img src="{{ $var->pic }}">
                                             </div>
-                                            <div class="name" style="margin:5px">{{ $var->userName }}</div>
+                                            <div class="name" style="margin:5px">{{ $var->userName }} </div>
+                                        <div>
 
+                                        </div>
+                                        </div>
+
+                                      
                                         </div>
                                     </div>
                                 @endif
@@ -347,14 +315,15 @@ width: 79vw;
 
             </div>
 
-            <div class="col-9 p-0" style="background-color: #F2F2F2; width: 86vw;">
-                {{-- <div class="d-flex align-items-start"> --}}
-
+            <div class="col-8 p-0" style="background-color: #eeeeee;">
+             
+              
                     <div class="tab-content fixed-content" id="v-pills-tabContent">
+                       
                         @foreach ($question as $var)
-                            <div class="tab-pane fade show dialog-left p0" id="v-pills-{{ $var->id }}"
-                                role="tabpanel" aria-labelledby="v-pills-{{ $var->id }}-tab">
-                                <div class="dialogue">
+                            <div class="tab-pane fade show p0" id="v-pills-{{ $var->user }}"
+                                role="tabpanel" aria-labelledby="v-pills-{{ $var->user }}-tab">
+                                <div class="dialogue  m-0">
                                     <div class="user remove">
                                         <div class="avatar">
                                             <!-- 對話的區域 -->
@@ -367,10 +336,6 @@ width: 79vw;
                                         <div class="txt">
                                             {{ $var->message }}
                                         </div>
-                                   
-                                    </div>
-                                <div class="user local">
-                                    <div class="avatar">
                                         @if ($var->help==3)
                                        
                                         <div class="txt ans">
@@ -378,16 +343,13 @@ width: 79vw;
                                         </div>
                                         @endif
                                     </div>
-                                
                                 </div>
-                            </div>
-                                <div>
+                                    <div>
                                     <form action="/customer/ans" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="user" value="{{ $var->user }}">
-                                        <input type="hidden" name="question" value="{{ $var->message }}">
                                         <div class="row">    
-                                            <div class="col-9 pr-0">
+                                            <div class="col-8 pr-0">
                                                 <input class="w-100"type="text" name='answer'>
                                             </div>
                                         
@@ -399,7 +361,11 @@ width: 79vw;
                                      
                                         <br>
                                     </form>
+                                    </div>
+                                
                                 </div>
+                                <div>
+                            
                             </div>
 
 
@@ -425,6 +391,7 @@ width: 79vw;
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
 
+   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
