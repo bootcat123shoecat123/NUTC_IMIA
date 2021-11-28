@@ -9,7 +9,10 @@ use App\Http\Controllers\phonecontroller;
 use App\Http\Controllers\teachController;
 use App\Http\Controllers\mapController;
 use App\Http\Controllers\cardController;
+<<<<<<< HEAD
 use App\Http\Controllers\customerController;
+=======
+>>>>>>> aada265ce11912e69c3bcebdbcbb7dad424fbbe8
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +57,10 @@ Route::post('/backFun/Fupdate',[functionController::class,'updateF']);
 Route::post('/delete/backFun',[functionController::class,'deleteF']);
 Route::post('/create/backFun',[functionController::class,'createF']);
 
+<<<<<<< HEAD
 Route::post('/customer/ans', [customerController::class,'updateQ']);
+=======
+>>>>>>> aada265ce11912e69c3bcebdbcbb7dad424fbbe8
 
 Route::post('/backFun/Cupdate',[cardController::class,'updateC']);
 
