@@ -248,7 +248,6 @@ width: 79vw;
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<<<<<<< HEAD
             <ul class="navbar-nav mr-auto">
                 <li>&nbsp;<a href="/backTeach">教師資訊 </a>&nbsp;</li>
                 <li>&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
@@ -260,18 +259,6 @@ width: 79vw;
                 <li>&nbsp;<a href="/customer">真人客服</a>&nbsp;</li>
             </ul>
 
-=======
-          <ul class="navbar-nav mr-auto">
-            <li >&nbsp;<a href="/backTeach">教師資訊   </a>&nbsp;</li>
-            <li >&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
-            <li >&nbsp;<a href="/backMap">課程地圖</a>&nbsp;</li>
-            <li >&nbsp;<a href="/backFun">功能說明</a>&nbsp;</li>
-            <li>&nbsp;<a href="/backCard">Card</a>&nbsp;</li>
-            <li >&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
-            <li >&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
-          </ul>
-          
->>>>>>> aada265ce11912e69c3bcebdbcbb7dad424fbbe8
         </div>
     </nav>
     <div class="container-fluid">

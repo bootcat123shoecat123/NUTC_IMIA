@@ -9,10 +9,8 @@ use App\Http\Controllers\phonecontroller;
 use App\Http\Controllers\teachController;
 use App\Http\Controllers\mapController;
 use App\Http\Controllers\cardController;
-<<<<<<< HEAD
 use App\Http\Controllers\customerController;
-=======
->>>>>>> aada265ce11912e69c3bcebdbcbb7dad424fbbe8
+use App\Http\Controllers\knownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +22,13 @@ use App\Http\Controllers\customerController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/update/known',[phonecontroller::class,'update']);
+Route::post('/delete/known',[phonecontroller::class,'delete']);
+Route::post('/add/known',[phonecontroller::class,'add']);
+
+Route::post('/question/known',[phonecontroller::class,'question']);
+Route::post('/update/known/{id}',[phonecontroller::class,'update']);
+Route::post('/delete/known',[phonecontroller::class,'delete']);
 
 Route::post('/update/phone',[phonecontroller::class,'update']);
 Route::post('/delete/phone',[phonecontroller::class,'delete']);
@@ -57,10 +62,7 @@ Route::post('/backFun/Fupdate',[functionController::class,'updateF']);
 Route::post('/delete/backFun',[functionController::class,'deleteF']);
 Route::post('/create/backFun',[functionController::class,'createF']);
 
-<<<<<<< HEAD
 Route::post('/customer/ans', [customerController::class,'updateQ']);
-=======
->>>>>>> aada265ce11912e69c3bcebdbcbb7dad424fbbe8
 
 Route::post('/backFun/Cupdate',[cardController::class,'updateC']);
 
@@ -75,4 +77,5 @@ Route::get('/backMap', [mapController::class,'show']);
 Route::get('/backID', [idController::class,'show']);
 Route::get('/phone', [phonecontroller::class,'show']);
 Route::get('/place', [topControll::class,'show']);
+Route::get('/known', [knownController::class,'show']);
 Route::get('/customer', [customerController::class,'show']);
