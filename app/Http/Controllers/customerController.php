@@ -24,7 +24,7 @@ class customerController extends Controller
                 'help' => 3
             ]
         );
-        //echo shell_exec("python answer.py");
+        echo shell_exec("python answer.py");
         return redirect('/customer');
     }
     function getusername(string $user_id)

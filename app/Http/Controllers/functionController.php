@@ -16,9 +16,7 @@ class functionController extends Controller
             'msgIn'=>'required'
             ]
         );
-        
         function_model::where('msgIn',$R->msgIn)->delete();
-            
         return redirect('/backFun');
     }
    

@@ -36,9 +36,12 @@ class cardController extends Controller
     function show(){
         #report coursemap's name、url
         $cline=(Object)[
-            'coursemap'=>function_model::where('sort',"coursemap")->join("card","message.msgIn","=","card.enter")->select('message.msgIn','card.title','card.text')->get(),
-            'richmanu'=>function_model::where('sort',"richmanu")->where('mark','=','card')->join("card","message.msgIn","=","card.enter")->select('message.msgIn','card.title','card.text')->get(),
-            'introduce'=>function_model::where('sort',"introduce")->where('mark','=','card')->join("card","message.msgIn","=","card.enter")->select('message.msgIn','card.title','card.text')->get()
+            'coursemap'=>function_model::where('sort',"coursemap")->
+            join("card","message.msgIn","=","card.enter")->select('message.msgIn','card.title','card.text')->get(),
+            'richmanu'=>function_model::where('sort',"richmanu")->where('mark','=','card')->
+            join("card","message.msgIn","=","card.enter")->select('message.msgIn','card.title','card.text')->get(),
+            'introduce'=>function_model::where('sort',"introduce")->where('mark','=','card')->
+            join("card","message.msgIn","=","card.enter")->select('message.msgIn','card.title','card.text')->get()
         ];
         return view('cardView',[
             'value'=>$cline

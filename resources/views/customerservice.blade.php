@@ -256,6 +256,7 @@ width: 79vw;
                 <li>&nbsp;<a href="/backCard">Card</a>&nbsp;</li>
                 <li>&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
                 <li>&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
+                <li>&nbsp;<a href="/know">資管科問答</a>&nbsp;</li>
                 <li>&nbsp;<a href="/customer">真人客服</a>&nbsp;</li>
             </ul>
 

@@ -10,62 +10,61 @@ class phonecontroller extends Controller
      }
     //
     function update(Request $R){
-        $ra="";
-        $rd="";
+        
+        $rq="";
         $url="";
         $key="";
         $mg="";
         $send="";
         $kb_id="";
-        $soure="";
         $sendA="";
         if($R->Qadd!=""){
             
-            $mg=explode("\n",$R->Qadd);
+            $mg=explode("\n ",$R->ttlQ);
             print_r($mg);
-            $ra='"add":[';
             foreach($mg as $e){
-            $ra.='"'.$e.'",';
-                
+            $rq.='"'.$e.'",';
             }
-            $ra.='],';
-            $ra=str_replace("\r",'',$ra);
-        }
-        if($R->Qdelete!=""){
+
+            $rq.='"'.$R->Qadd.'"';
+
+            $rq=str_replace("\r",'',$rq);
+        }elseif($R->Qdelete!=""){
             
-            $mg=explode("\n",$R->Qdelete);
+            $mg=explode("\n ",$R->ttlQ);
             print_r($mg);
-            $rd='
-            "delete":[';
             foreach($mg as $e){
-            $rd.='"'.$e.'",';
+                if($e!=$R->Qdelete)$rq.='"'.$e.'",';
                 
             }
-            $rd.=']';
-            $rd=str_replace("\r",'',$rd);
+            $rq=str_replace("\r",'',$rq);
+        }else{
+            $mg=explode("\n ",$R->ttlQ);
+            print_r($mg);
+            foreach($mg as $e){
+                $rq.='"'.$e.'",';
+                }
         }
             
      
-            $url='https://nutc.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-            $key="71d073f160924eb6b45b21cb2960b486";
-            $kb_id="eef1b7fe-64eb-41df-821c-2ac57c853477";
-            if (($R->id>=39)and($R->id<=106))$soure="0802ebc6-a0c2-41ad-9a10-3d8f3d3a2fdb-Kb.tsv";
-            else $soure="Custom Editorial";
+            $url='https://tatest2022.cognitiveservices.azure.com/language/query-knowledgebases/projects/new-project/qnas?api-version=2021-10-01';
+            $key="4ed3b8d5359647a984fb757d873e20cc";
+            $soure="Editorial";
         
-        if($R->A!="")$sendA='"answer": "'.$R->A.'",';
             $quest='PATCH';
-            $send='{"update":{
-                "name": "QnA Maker + Emotion API FAQ Bot",
-                "qnaList": [
-                  {
-                    "id": '.$R->id.','.$sendA.'
-                    "source": "'.$soure.'",
-                    "questions": {'. $ra. $rd.'
+            $send='[{
+                
+                    "op": "replace",
+                    "value": {
+                    "id": '.$R->id.',
+                    "answer": "'.$R->A.'",
+                      "source": "'.$soure.'",
+                      "questions": ['.$rq.'
+                      ]
                     }
-                  }]
                 }
-             }   ';
-        $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
+             }] ';
+        $response=$this->curlGo($url,$key,$quest,$send);
 
         return redirect("/phone");
         #QnA
@@ -79,25 +78,19 @@ class phonecontroller extends Controller
         $kb_id="";
         $soure="";
        
-        
-            $url='https://nutc.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-            $key="71d073f160924eb6b45b21cb2960b486";
-            $kb_id="eef1b7fe-64eb-41df-821c-2ac57c853477";
-            if (($R->id<=63)&&(($R->id>=39)))$soure="Editorial";
-            if (($R->id>=70)&&($R->id<=107))$soure="0802ebc6-a0c2-41ad-9a10-3d8f3d3a2fdb-Kb.tsv";
-            else $soure="Custom Editorial";
-     
+        $url='https://tatest2022.cognitiveservices.azure.com/language/query-knowledgebases/projects/new-project/qnas?api-version=2021-10-01';
+            $key="4ed3b8d5359647a984fb757d873e20cc";
+            $soure="Editorial";
+            
             $quest='PATCH';
-            $send='{
-                "delete": {
-                        
-                            "ids": ['.(int)$R->id.'],
-                            "sources": ["'.$soure.'"]
-                        
-                    
+            $send='[{
+                "op": "delete",
+                "value": {
+                  "id": '.$R->id.',
+                  "source": "'.$soure.'"
                 }
-            }';
-        $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
+              }]';
+        $response=$this->curlGo($url,$key,$quest,$send);
 
         return redirect("/phone");
         #QnA
@@ -110,6 +103,7 @@ class phonecontroller extends Controller
         $send="";
         $quest='GET';
         $kb_id="";
+        $soure="Editorial";
         if($R->A!=""&&$R->Q!=""){
             
             $mg=explode("\n",$R->Q);
@@ -124,35 +118,32 @@ class phonecontroller extends Controller
             }
             print($r);
            
-                $url='https://nutc.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-                $key="71d073f160924eb6b45b21cb2960b486";
-                $kb_id="eef1b7fe-64eb-41df-821c-2ac57c853477";
+            $url='https://tatest2022.cognitiveservices.azure.com/language/query-knowledgebases/projects/new-project/qnas?api-version=2021-10-01';
+            $key="4ed3b8d5359647a984fb757d873e20cc";
             
+        
             if($r!=""){
                 $quest='PATCH';
                 $send='{
-                    "add": {
-                        "qnaList": [
-                            {
-                                "id": 0,
+                    "op": "add",
+                    "value": {
                                 "answer": "'.$R->A.'",
-                                "source": "Custom Editorial",
-                                "questions":'.$r.',
-                                "metadata": []
+                                "source": "'.$soure.'",
+                                "questions":'.$r.'
                             }
                         ]
                     }
                 }';
             }
-        $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
+        $response=$this->curlGo($url,$key,$quest,$send);
         return  redirect("/phone");
         #QnA
     }
-    function curlGo($url,$kb_id,$key,$quest,$send){
+    function curlGo($url,$key,$quest,$send){
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url.$kb_id,
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -162,7 +153,7 @@ class phonecontroller extends Controller
             CURLOPT_CUSTOMREQUEST => $quest,
             CURLOPT_POSTFIELDS =>$send,
             CURLOPT_HTTPHEADER => array(
-                'Ocp-Apim-Subscription-Key:' . $key,
+                'Ocp-Apim-Subscription-Key:4ed3b8d5359647a984fb757d873e20cc',
                 'Content-Type: application/json'
                 ),
             )
@@ -181,53 +172,38 @@ class phonecontroller extends Controller
         $send="";
         $quest='GET';
         $kb_id="";
-        $url='https://nutc.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-        $key="71d073f160924eb6b45b21cb2960b486";
-        $kb_id="eef1b7fe-64eb-41df-821c-2ac57c853477";
-        $kb_id.='/Test/qna';
-        $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
+        $url='https://tatest2022.cognitiveservices.azure.com/language/query-knowledgebases/projects/new-project/qnas?api-version=2021-10-01';
+        $key="4ed3b8d5359647a984fb757d873e20cc";
+        $response=$this->curlGo($url,$key,$quest,$send);
         
-            //echo('<table border="1" style="float:left;"><tr><th>id</th><th>questions</th><th>answer</th></tr>');
+            
              $re=(array)json_decode($response);
-            /*foreach($re["qnaDocuments"] as $e){
-                $questions="";
-                foreach($e->questions as $qe){
-                    $questions.=$qe."<br>";
-                }
-                echo("<tr><td>".(string)$e->id."</td><td>".$questions."</td><td>".str_replace("\n","<br>",$e->answer)."</td></tr>");
-            }
-
-            echo("</table></td><td>");*/
-            //echo('<table border="1" style="float:left;"><tr><th>id</th><th>questions</th><th>answer</th></tr>');
-        
-            /*foreach($re2["qnaDocuments"] as $e){
-                $questions="";
-                foreach($e->questions as $qe){
-                    $questions.=$qe."<br>";
-                }
-                echo("<tr><td>".(string)$e->id."</td><td>".$questions."</td><td>".str_replace("\n","<br>",$e->answer)."</td></tr>");
-            }
-
-            echo("</table>");*/
+            
             $singleQA=[];
             if($R!=null){
-            foreach($re["qnaDocuments"] as $singleQA){
+            foreach($re["value"] as $singleQA){
                 if($singleQA->id==$R->id){
                     break;
                 }
             }
         }
+        
         if($R!=null){
         return view('phoneView',[
-            'QAphone'=>$re["qnaDocuments"],
+            'QAphone'=>$re["value"],
             'Q'=>$singleQA,
             'num'=>$R->num
             ]);
-        }else{
+        }elseif(isset($re["value"])){
         return view('phoneView',[
-            'QAphone'=>$re["qnaDocuments"]
+            'QAphone'=>$re["value"]
             ]);
+        }else{
+            view('error',[
+                'error'=>$re
+                ]);
         }
+    
     }
    
 }

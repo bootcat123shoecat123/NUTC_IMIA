@@ -22,13 +22,13 @@ use App\Http\Controllers\knownController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/update/known',[phonecontroller::class,'update']);
-Route::post('/delete/known',[phonecontroller::class,'delete']);
-Route::post('/add/known',[phonecontroller::class,'add']);
+Route::post('/update/known',[knownController::class,'update']);
+Route::post('/delete/known',[knownController::class,'delete']);
+Route::post('/add/known',[knownController::class,'add']);
 
-Route::post('/question/known',[phonecontroller::class,'question']);
-Route::post('/update/known/{id}',[phonecontroller::class,'update']);
-Route::post('/delete/known',[phonecontroller::class,'delete']);
+Route::post('/question/known',[knownController::class,'question']);
+Route::post('/update/known/{id}',[knownController::class,'update']);
+Route::post('/delete/known',[knowncontroller::class,'delete']);
 
 Route::post('/update/phone',[phonecontroller::class,'update']);
 Route::post('/delete/phone',[phonecontroller::class,'delete']);
@@ -70,6 +70,7 @@ Route::post('/backMap/Mupdate',[mapController::class,'updateM']);
 Route::post('/delete/backMap',[mapController::class,'deleteM']);
 Route::post('/create/backMap',[mapController::class,'createM']);
 
+Route::get('/known', [knownController::class,'show']);
 Route::get('/backCard', [cardController::class,'show']);
 Route::get('/backFun', [functionController::class,'show']);
 Route::get('/backTeach', [teachController::class,'show']);
@@ -77,5 +78,5 @@ Route::get('/backMap', [mapController::class,'show']);
 Route::get('/backID', [idController::class,'show']);
 Route::get('/phone', [phonecontroller::class,'show']);
 Route::get('/place', [topControll::class,'show']);
-Route::get('/known', [knownController::class,'show']);
+
 Route::get('/customer', [customerController::class,'show']);

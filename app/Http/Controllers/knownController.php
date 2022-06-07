@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Nullable;
 
 class knownController extends Controller
 {
@@ -139,11 +138,11 @@ class knownController extends Controller
         return  redirect("/known");
         #QnA
     }
-    function curlGo($url,$kb_id,$key,$quest,$send){
+    function curlGo($url,$key,$quest,$send){
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url.$kb_id,
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -172,37 +171,14 @@ class knownController extends Controller
         $send="";
         $quest='GET';
         $kb_id="";
-        $url=' https://nutcqatest.azurewebsites.net/qnamaker/v4.0/knowledgebases/';
-        $key="804aedf8-5c97-4cee-b388-0400c255e999";
-        $kb_id="29742c04-3343-4c14-82eb-8d24da8f0678";
-        $kb_id.='/Test/qna';
-        $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
-        
-            //echo('<table border="1" style="float:left;"><tr><th>id</th><th>questions</th><th>answer</th></tr>');
+        $url='https://tatest2022.cognitiveservices.azure.com/language/query-knowledgebases/projects/new-project/qnas?api-version=2021-10-01';
+        $key="4ed3b8d5359647a984fb757d873e20cc";
+        $response=$this->curlGo($url,$key,$quest,$send);
              $re=(array)json_decode($response);
-            /*foreach($re["qnaDocuments"] as $e){
-                $questions="";
-                foreach($e->questions as $qe){
-                    $questions.=$qe."<br>";
-                }
-                echo("<tr><td>".(string)$e->id."</td><td>".$questions."</td><td>".str_replace("\n","<br>",$e->answer)."</td></tr>");
-            }
-
-            echo("</table></td><td>");*/
-            //echo('<table border="1" style="float:left;"><tr><th>id</th><th>questions</th><th>answer</th></tr>');
-        
-            /*foreach($re2["qnaDocuments"] as $e){
-                $questions="";
-                foreach($e->questions as $qe){
-                    $questions.=$qe."<br>";
-                }
-                echo("<tr><td>".(string)$e->id."</td><td>".$questions."</td><td>".str_replace("\n","<br>",$e->answer)."</td></tr>");
-            }
-
-            echo("</table>");*/
+            
             $singleQA=[];
             if($R!=null){
-            foreach($re["qnaDocuments"] as $singleQA){
+            foreach($re["value"] as $singleQA){
                 if($singleQA->id==$R->id){
                     break;
                 }
@@ -210,13 +186,13 @@ class knownController extends Controller
         }
         if($R!=null){
         return view('known',[
-            'QAphone'=>$re["qnaDocuments"],
+            'QAknown'=>$re["value"],
             'Q'=>$singleQA,
             'num'=>$R->num
             ]);
         }else{
         return view('known',[
-            'QAphone'=>$re["qnaDocuments"]
+            'QAknown'=>$re["value"]
             ]);
         }
     }
