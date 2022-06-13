@@ -186,6 +186,7 @@ class phonecontroller extends Controller
             $singleQA=[];
             if($R!=null){
             foreach($re["value"] as $singleQA){
+                
                 if($singleQA->id==$R->id){
                     break;
                 }
