@@ -43,6 +43,9 @@ background: black;
     top:0%;
     left: 0%;
 }
+a {
+    color:white;
+}
         </style>
     </head>
     

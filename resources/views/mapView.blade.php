@@ -47,32 +47,45 @@ background: black;
     top:0%;
     left: 0%;
 }
-
+.A{
+  display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+a {
+    color:white;
+}
         </style>
     </head>
     
    
     
     <body class="antialiased"> 
-        <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+      <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
+        <a class="navbar-brand" href="#" style="color: white">後台</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li >&nbsp;<a href="/backTeach">教師資訊   </a>&nbsp;</li>
+            <li >&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
+            <li >&nbsp;<a href="/backMap">課程地圖</a>&nbsp;</li>
+            <li >&nbsp;<a href="/backFun">功能說明</a>&nbsp;</li>
+            <li>&nbsp;<a href="/known">資管問題</a>&nbsp;</li>
+            <li>&nbsp;<a href="/backCard">Card</a>&nbsp;</li>
+            <li >&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
+            <li >&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
+                <li >&nbsp;<a href="/known">資管系問答</a>&nbsp;</li>
+            <li>&nbsp;<a href="/customer">真人客服</a>&nbsp;</li>
+          </ul>
           
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                
-              </ul>
-              
-            </div>
-          </nav>
+        </div>
+      </nav>
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
+        {{-- <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
             <div class="position-fixed text-white container">
               <a class="h2 text-white">QnA</a>
               <ul class="nav navbar-nav text-white">
@@ -87,17 +100,17 @@ background: black;
                 <li class="active"><a href="/phone">聯絡方式</a></li>
               </ul>
             </div>
-        </div>
+        </div> --}}
         <br>
         <br>
         <br>
         <br>
-        <div class="col-10 ml-5">
+        <div class="col-12">
             <br>
-            <div class="row align-self-center ml-5">
+            <div class="row A">
      
          
-            <h3 class="col-10"><strong>課程地圖</strong></h3>
+            <h4 class="col-10"><strong>課程地圖</strong></h4>
             <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModalBu">
                 新增地圖
                 </button>
@@ -107,13 +120,14 @@ background: black;
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title mx-auto"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;新增教師</h5>
+                        <h5 class="modal-title mx-auto"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;新增地圖</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form method="post"  action="" >
+                        <form method="post"  action="/create/backMap" >
+                          {{-- 新增課程地圖 --}}
                             {{ csrf_field() }}
                             <div class="m-3">
                           <div class="row">
@@ -142,13 +156,15 @@ background: black;
                 </div>
      </div>
      <br>
-<br>
-<br>
-<br>
-     <h3>資管</h3>
+
+     <h3 class="A">資管</h3>
+     <br>
+     <br>
         <div class="container-fluid">
-            <div class="row">
+          <div style="border-color:#FBE251; border-style:solid;border-radius:2vh;}">
+            <div class="row A">
             <div class="col-5 border border-light rounded">
+              
      @php
      $mnum = 1;
  @endphp
@@ -178,7 +194,8 @@ background: black;
 
                 <div class="container">
                   
-                    <form method="post"  action="">
+                    <form method="post"  action="/backMap/Mupdate">
+                      {{-- 編輯資管科二技地圖 --}}
                 {{ csrf_field() }}
                 <div class="m-12">
               <div class="row">
@@ -213,7 +230,8 @@ background: black;
     </div>
         </div>
         <div class="col-1">
-<form action="/delete/phone/" method="post">
+<form action="/delete/backMap" method="post">
+       {{-- 刪除資管科二技地圖 --}}
                 {{ csrf_field() }}
                 <input name="id" type="hidden" value="{{$item->id}}" >
                 <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
@@ -257,7 +275,8 @@ $mnum++
 
                 <div class="container">
                   
-                    <form method="post"  action="">
+                    <form method="post"  action="/backMap/Mupdate">
+                    {{-- 編輯資管科五專地圖 --}}
                 {{ csrf_field() }}
                 <div class="m-12">
               <div class="row">
@@ -292,7 +311,8 @@ $mnum++
     </div>
         </div>
         <div class="col-1">
-<form action="/delete/phone/" method="post">
+<form action="/delete/backMap" method="post">
+     {{-- 刪除資管科二技地圖 --}}
                 {{ csrf_field() }}
                 <input name="id" type="hidden" value="{{$item->id}}" >
                 <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
@@ -312,8 +332,9 @@ $mnum++
 <br>
 <br>
 <br>
-          <h3>資訊應用</h3>
+          <h3 class="A">資訊應用</h3>
           <div class="container-fluid">
+            <div style="border-color:#BEC23F; border-style:solid;border-radius:2vh;}">
               <div class="row">
               <div class="col-5 border border-light rounded">
        @php
@@ -345,7 +366,8 @@ $mnum++
   
                   <div class="container">
                     
-                      <form method="post"  action="">
+                      <form method="post"  action="/backMap/Mupdate">
+                        {{-- 編輯資訊應用二技地圖 --}}
                   {{ csrf_field() }}
                   <div class="m-12">
                 <div class="row">
@@ -380,7 +402,8 @@ $mnum++
       </div>
           </div>
           <div class="col-1">
-  <form action="/delete/phone/" method="post">
+  <form action="/delete/backMap" method="post">
+     {{-- 刪除資訊應用二技地圖 --}}
                   {{ csrf_field() }}
                   <input name="id" type="hidden" value="{{$item->id}}" >
                   <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
@@ -424,7 +447,8 @@ $mnum++
   
                   <div class="container">
                     
-                      <form method="post"  action="">
+                      <form method="post"  action="/backMap/Mupdate">
+                         {{-- 編輯資訊應用五專地圖 --}}
                   {{ csrf_field() }}
                   <div class="m-12">
                 <div class="row">
@@ -459,7 +483,8 @@ $mnum++
       </div>
           </div>
           <div class="col-1">
-  <form action="/delete/phone/" method="post">
+  <form action="/delete/backMap" method="post">
+     {{-- 刪除資訊應用五專地圖 --}}
                   {{ csrf_field() }}
                   <input name="id" type="hidden" value="{{$item->id}}" >
                   <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
@@ -478,6 +503,7 @@ $mnum++
 </div>
 </div>
 </div>
-
+<br>
+<br>
     </body>
 </html>

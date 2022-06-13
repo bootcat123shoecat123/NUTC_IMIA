@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class function_model extends Model
+class card_model extends Model
 {
     use HasFactory;
     public $timestamps = FALSE;
-    protected $table="message";
-    protected $primaryKey = 'msgIn';
-    protected $keyType = 'string';
+    protected $table='card';
     protected $fillable=[
-        'msgIn',
-        'msgOut',
-        'mark',
-        'sort'
+        'card_id',
+        'enter',
+        'title',
+        'text'
     ];
 }

@@ -90,7 +90,7 @@
                 <li>&nbsp;<a href="/backCard">Card</a>&nbsp;</li>
                 <li>&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
                 <li>&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
-                <li>&nbsp;<a href="/known">資管科問答</a>&nbsp;</li>
+                <li >&nbsp;<a href="/known">資管系問答</a>&nbsp;</li>
                 <li>&nbsp;<a href="/customer">真人客服</a>&nbsp;</li>
             </ul>
 
@@ -122,16 +122,17 @@
                     <h4><strong>功能介紹</strong></h4>
 
                 </div>
-                {{--richmanu--}}
-                
+                {{-- richmanu --}}
+                <div class="container-fluid border border-light rounded">
                     <div style="border-color:#FBE251; border-style:solid;border-radius:2vh;}">
                         <table class="table table-striped table-hover" >
-                           
+ 
                             <tr style="background:#FBE251" style="border-radius:2vh;border-style:solid;">
                               <td class="col-3 text-center"><strong>功能表單</strong></td>
                               <td class="col-5 text-center"><strong>使用說明</strong></td>
-                              <td colspan="2" class="text-center" ><strong>操作</strong></td>
+                              <td colspan="2" ><strong>操作</strong></td>
                             </tr>
+                         
                             @php
                             $mnum = 1;
                         @endphp
@@ -142,8 +143,9 @@
                             
                             <tr>
                               <td class="col-3 text-center">{{  $item->msgIn }}</td>
-                              <td class="col-5">{!!nl2br($item->msgOut)!!}</td>
-                              <td class="col-1" class="text-center">            <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                              <td class="col-8">{!! $item->title !!}<br>{!! $item->text !!}</td>
+                              <td class="col-2">
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal"
                                 data-target="<?php echo '#' . $modal . 'ri'; ?>">
                                 🖊️
                             </button>
@@ -163,7 +165,7 @@
 
                                             <div class="container">
 
-                                                <form method="post" action="/backFun/Fupdate">
+                                                <form method="post" action="/backFun/Cupdate">
                                                     {{-- 編輯功能表單 --}}
                                                     {{ csrf_field() }}
                                                     <div class="m-12">
@@ -177,7 +179,23 @@
                                                                 value="{{ $item->msgIn }}">
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            aria-label="Text input with checkbox" name="msgIn"  value="{{ $item->msgIn }}">
+                                                            aria-label="Text input with checkbox" name="msgIn"
+                                                            value="{{ $item->msgIn }}">
+                                                    </div>
+                                                    <br>
+                                                                {{-- 改 --}}
+                                                    <div class="m-12">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label for="exampleFormControlTextarea1"
+                                                                    class="p-0 m-0"
+                                                                    style="font-size:2vh;text-align: left">title</label>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control"
+                                                            id="exampleFormControlTextarea1" rows="3"
+                                                            name="title" size="100"
+                                                            placeholder="">{!! $item->title !!}</textarea>
                                                     </div>
                                                     <br>
                                                     <div class="m-12">
@@ -185,12 +203,13 @@
                                                             <div class="col-12">
                                                                 <label for="exampleFormControlTextarea1"
                                                                     class="p-0 m-0"
-                                                                    style="font-size:2vh;text-align: left">使用說明</label>
+                                                                    style="font-size:2vh;text-align: left">詳情</label>
                                                             </div>
                                                         </div>
                                                         <textarea class="form-control"
                                                             id="exampleFormControlTextarea1" rows="3"
-                                                            name="msgOut" size="100" aria-valuetext="msgOut" placeholder="">{!!$item->msgOut!!}</textarea>
+                                                            name="text" size="100"
+                                                            placeholder="">{!! $item->text !!}</textarea>
                                                     </div>
                                                     <br>
                                                     <div class="modal-footer m-12">
@@ -209,12 +228,12 @@
                               </td>
                               <td class="col-1">
                               
-                                <form action="/delete/backFun" method="post">
-                                  {{-- 刪除功能表單 --}}
-                                  {{ csrf_field() }}
-                                  <input type="hidden" name="OmsgIn" value="{{ $item->msgIn }}">
-                                  <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
-                              </form>
+                                {{-- <form action="/delete/backFun" method="post">
+                                    刪除功能表單 
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="OmsgIn" value="{{ $item->msgIn }}">
+                                    <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+                                </form> --}}
                         </td>
                         
                             </tr>
@@ -224,18 +243,142 @@
                         </div>
                         @endforeach
                           </table>
+                    </div>
                 </div>
-               
+                <br><br>
+                <div class="container-fluid border border-light rounded">
+                    <div style="border-color:#90B44B; border-style:solid;border-radius:2vh;}">
+                        <table class="table table-striped table-hover" >
+ 
+                            <tr style="background:#90B44B" style="border-radius:2vh;border-style:solid;">
+                              <td class="col-3 text-center"><strong>課程地圖</strong></td>
+                              <td class="col-8 text-center"><strong>使用說明</strong></td>
+                              <td colspan="2"  ><strong>操作</strong></td>
+                            </tr>
+                         
+                            @php
+                            $mnum = 1;
+                        @endphp
+                        @foreach($value->coursemap as $item)
+                            @php
+                                $modal = "exampleModal".(string)$mnum;
+                            @endphp
+                            
+                            <tr>
+                              <td class="col-3 text-center">{{ $item->msgIn }}</td>
+                              <td class="col-5">{!! $item->title !!}<br>{!! $item->text !!}</td>
+                              <td class="col-1" class="text-center">                   <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                data-target="<?php echo '#' . $modal . 'ri'; ?>">
+                                🖊️
+                            </button>
+                            <div class="modal fade c0" id="<?php echo $modal . 'ri'; ?>" tabindex="-1" role="dialog"
+                                aria-labelledby="<?php echo $modal . 'Titleri'; ?>" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content bg-d">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="<?php echo $modal . 'Titleri'; ?>">
+                                                {{ $item->msgIn }}</h5>
+                                            <button type="button" class="close c0" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="container">
+
+                                                <form method="post" action="/backFun/Cupdate">
+                                                    {{-- 編輯功能表單 --}}
+                                                    {{ csrf_field() }}
+                                                    {{-- 改 --}}
+                                                    <div class="m-12">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label for="exampleFormControlTextarea1"
+                                                                    class="p-0 m-0"
+                                                                    style="font-size:2vh;text-align: left">功能表單</label>
+                                                            </div>
+                                                            <input type="hidden" name="OmsgIn"
+                                                                value="{{ $item->msgIn }}">
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            aria-label="Text input with checkbox" name="msgIn"
+                                                            value="{{ $item->msgIn }}">
+                                                    </div>
+                                                    <br>
+                                                    <div class="m-12">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                {{-- 改 --}}
+                                                                <label for="exampleFormControlTextarea1"
+                                                                    class="p-0 m-0"
+                                                                    style="font-size:2vh;text-align: left">title</label>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control"
+                                                            id="exampleFormControlTextarea1" rows="3" name="title"
+                                                            size="100"
+                                                            placeholder="">{!! $item->title !!}</textarea>
+                                                    </div>
+                                                    <br>
+                                                    <div class="m-12">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label for="exampleFormControlTextarea1"
+                                                                    class="p-0 m-0"
+                                                                    style="font-size:2vh;text-align: left">詳情</label>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control"
+                                                            id="exampleFormControlTextarea1" rows="3" name="text"
+                                                            size="100"
+                                                            placeholder="">{!! $item->text !!}</textarea>
+                                                    </div>
+                                                    <br>
+                                                    <div class="modal-footer m-12">
+                                                        <input class="btn btn-primary pull-bottom w-100"
+                                                            type="submit">
+                                                    </div>
+                                                </form>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              </td>
+                              <td class="col-1">
+                              
+                                {{-- <form action="/delete/backFun" method="post">
+                                    {{-- 刪除功能表單
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="OmsgIn" value="{{ $item->msgIn }}">
+                                    <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+                                </form> --}}
+                        </td>
+                        
+                            </tr>
+                            @php
+                        $mnum++
+                        @endphp
+                        </div>
+                        @endforeach
+                          </table>
+                    </div>
+                </div>
                 <br><br>
                 <div class="container-fluid border border-light rounded">
                     <div style="border-color:#FFB11B; border-style:solid;border-radius:2vh;}">
                         <table class="table table-striped table-hover" >
-                           
+ 
                             <tr style="background:#FFB11B" style="border-radius:2vh;border-style:solid;">
                               <td class="col-3 text-center"><strong>資管介紹</strong></td>
-                              <td class="col-5 text-center"><strong>詳細資訊</strong></td>
-                              <td colspan="2" class="text-center" ><strong>操作</strong></td>
+                              <td class="col-8 text-center"><strong>詳細資訊</strong></td>
+                              <td colspan="2"  ><strong>操作</strong></td>
                             </tr>
+                         
                             @php
                             $mnum = 1;
                         @endphp
@@ -246,8 +389,9 @@
                             
                             <tr>
                               <td class="col-3 text-center">{{  $item->msgIn }}</td>
-                              <td class="col-5">{!!nl2br($item->msgOut)!!}</td>
-                              <td class="col-1" class="text-center">    <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                              <td class="col-5">{!! $item->title !!}<br>{!! $item->text !!}</td>
+                              <td class="col-1">
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal"
                                 data-target="<?php echo '#' . $modal . 'Bu'; ?>">
                                 🖊️
                             </button>
@@ -267,7 +411,7 @@
 
                                             <div class="container">
 
-                                                <form method="post" action="/backFun/Fupdate">
+                                                <form method="post" action="/backFun/Cupdate">
                                                     {{ csrf_field() }}
 
                                                     <input type="hidden" name="OmsgIn"
@@ -282,7 +426,39 @@
 
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            aria-label="Text input with checkbox" name="msgIn"  value="{{ $item->msgIn }}">
+                                                            aria-label="Text input with checkbox" name="msgIn"
+                                                            value="{{ $item->msgIn }}">
+                                                    </div>
+                                                    <br>
+                                                    {{-- 改 --}}
+                                                    <div class="m-12">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label for="exampleFormControlTextarea1"
+                                                                    class="p-0 m-0"
+                                                                    style="font-size:2vh;text-align: left">功能表單</label>
+                                                            </div>
+                                                            <input type="hidden" name="OmsgIn"
+                                                                value="{{ $item->msgIn }}">
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            aria-label="Text input with checkbox" name="msgIn"
+                                                            value="{{ $item->msgIn }}">
+                                                    </div>
+                                                    <br>
+                                                    <div class="m-12">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                {{-- 改 --}}
+                                                                <label for="exampleFormControlTextarea1"
+                                                                    class="p-0 m-0"
+                                                                    style="font-size:2vh;text-align: left">title</label>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control"
+                                                            id="exampleFormControlTextarea1" rows="3" name="title"
+                                                            size="100"
+                                                            placeholder="">{!! $item->title !!}</textarea>
                                                     </div>
                                                     <br>
                                                     <div class="m-12">
@@ -294,8 +470,9 @@
                                                             </div>
                                                         </div>
                                                         <textarea class="form-control"
-                                                            id="exampleFormControlTextarea1" rows="3" name="A"
-                                                            size="100" placeholder="">{!!$item->msgOut!!}</textarea>
+                                                            id="exampleFormControlTextarea1" rows="3" name="text"
+                                                            size="100"
+                                                            placeholder="">{!! $item->text !!}</textarea>
                                                     </div>
                                                     <br>
                                                     <div class="modal-footer m-12">
@@ -312,14 +489,13 @@
                                 </div>
                             </div>
                               </td>
-                              <td class="col-1">
-                              
+                              {{-- <td class="col-1">
                                 <form action="/delete/phone/" method="post">
-                                  {{ csrf_field() }}
-                                  <input type="hidden" name="OmsgIn" value="{{ $item->msgIn }}">
-                                  <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
-                              </form>
-                        </td>
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="OmsgIn" value="{{ $item->msgIn }}">
+                                    <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+                                </form>
+                        </td> --}}
                         
                             </tr>
                             @php
@@ -328,8 +504,12 @@
                         </div>
                         @endforeach
                           </table>
-                
+
+                </div>
+             
+
             </div>
+            <br>
         </div>
     </div>
 

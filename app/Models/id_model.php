@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class id_model extends Model
 {
     use HasFactory;
-    
+    public $timestamps = FALSE;
     protected $table='office';
     protected $fillable=[
         'code',

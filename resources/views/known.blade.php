@@ -97,11 +97,11 @@ a {
         <table class="table">
             <tr class="row justify-content-start"><th class="col-1" scope="col">id</th><th class="col-2" scope="col">questions</th><th class="col-auto" scope="col">answer</th><th class="col-auto" scope="col"></th></tr>
             <tr class="row"><input id="ls" type="button" class="w-100 btn btn-outline-success pull-right" value="新增QA"></tr>
-            @foreach ($QAplace as $item)
-            <tr class="row"><a href="#{{$item->id}}"></a><td class="col-1 h2" scope="col" onclick="putid('place',{{$item->id}})">{{$item->id}}</td>
+            @foreach ($QAknown as $item)
+            <tr class="row"><a href="#{{$item->id}}"></a><td class="col-1 h2" scope="col" onclick="putid('known',{{$item->id}})">{{$item->id}}</td>
                 <td class="col-2" scope="col">
-                    <form action="/question/place" method="post">{{ csrf_field() }}  <input name="id" type="hidden" value="{{$item->id}}"><input class="btn btn-info w-100 blocker" type="submit" value="Questions"></form>
-               <input type="button" onclick="putid('place',{{$item->id}})" value="新增問句" class="btn btn-outline-success pull-right w-100 ls2" >
+                    <form action="/question/known" method="post">{{ csrf_field() }}  <input name="id" type="hidden" value="{{$item->id}}"><input class="btn btn-info w-100 blocker" type="submit" value="Questions"></form>
+               <input type="button" onclick="putid('known',{{$item->id}})" value="新增問句" class="btn btn-outline-success pull-right w-100 ls2" >
                @if (count($item->questions)<3)
                @for ($i = 0; $i < count($item->questions); $i++)
                
@@ -123,7 +123,7 @@ a {
                         
                          foreach($item->questions as $qitem) 
                         <a class="dropdown-item" >!!$qitem!!}
-                            <form action="/update/place/deleteQ" method="post"> 
+                            <form action="/update/known/deleteQ" method="post"> 
                                 { csrf_field() }}
                                 <input name="id" type="hidden" value="{$item->id}}" >
                                 <input name="Qdelete" type="hidden" value="!!$qitem!!}">
@@ -133,9 +133,9 @@ a {
                         </div>-->
             
                 <td class="col py-3">{!!nl2br($item->answer)!!}</td><td>
-                    <input onclick="putid('place',{{$item->id}})" type="submit" value="🖊️" class="btn btn-outline-info pull-right ls3">
+                    <input onclick="putid('known',{{$item->id}})" type="submit" value="🖊️" class="btn btn-outline-info pull-right ls3">
             </td><td>
-                    <form action="/delete/place/" method="post">
+                    <form action="/delete/known/" method="post">
                     {{ csrf_field() }}
                     <input name="id" type="hidden" value="{{$item->id}}" >
                     <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
@@ -155,7 +155,7 @@ a {
             @foreach($Q->questions as $qitem) 
             <tr class="row"><td class="col-3 w-80" scope="col">{!!$qitem!!}
                 </td><td>
-                <form action="/update/place/deleteQ" method="post"> 
+                <form action="/update/known/deleteQ" method="post"> 
                     {{ csrf_field() }}
                     <input name="id" type="hidden" value="{{$Q->id}}">
                     <input name="Qdelete" type="hidden" value="{!!$qitem!!}">
@@ -164,7 +164,7 @@ a {
                 </td>
             </tr>
              @endforeach
-             <tr class="row"><td><input type="button" onclick="putid('place',{{$Q->id}})" value="新增問句" class="btn btn-outline-success pull-right w-100 ls2" ></td></tr>
+             <tr class="row"><td><input type="button" onclick="putid('known',{{$Q->id}})" value="新增問句" class="btn btn-outline-success pull-right w-100 ls2" ></td></tr>
             </table>
             @endif
             
@@ -182,11 +182,11 @@ a {
 
 <div style="height:101%;width:101%;position:fixed;top:0%;left:0%; background-color:black;opacity:0.6;z-index: 9999; display:none; " id="dialogB"></div>
 <div class="card dialog" style="top:25%;left:25%;width:50%;height:50%;position:fixed; display:inline;z-index:10000;background-color:white; display:none;">
-    <h5 class="card-header">新增處室位置QA</h5>
+    <h5 class="card-header">新增資管辦公室QA</h5>
   <div class="card-body">
     <p class="card-text">
       不同問法需用換行隔開 </p>
-        <form method="post"  action="/add/place/" >
+        <form method="post"  action="/add/known/" >
       {{ csrf_field() }}
   新增問句：<textarea  name="Q" size="100" placeholder="提問"></textarea><br/>
   新增回應：<textarea  name="A" size="100" placeholder="回答"></textarea><br/>
@@ -196,14 +196,14 @@ a {
   </div>
    
 <div class="card dialog3" style="top:25%;left:25%;width:50%;height:50%;position:fixed; display:inline;z-index:10000;background-color:white; display:none;">
-    <h5 class="card-header">修改處室位置提問</h5>
+    <h5 class="card-header">修改資管辦公室提問</h5>
   <div class="card-body">
     <p class="card-text">
         輸入要修改的QA
-        <form action="/update/place/addA" method="post">
+        <form action="/update/known/addA" method="post">
             {{ csrf_field() }}
-            <input type="text" name="id" style="border: none;pointer-events: none;" value="" class="placeclass"><br>
-            <textarea name="A" id="placea" placeholder="回答"></textarea><br>
+            <input type="text" name="id" style="border: none;pointer-events: none;" value="" class="knownclass"><br>
+            <textarea name="A" id="knowna" placeholder="回答"></textarea><br>
             <input class="btn-info pull-bottom w-100"  type="submit">
         </form>
         </div>
@@ -214,10 +214,10 @@ a {
   <div class="card-body">
     <p class="card-text">
       不同問法需用換行隔開 </p>
-        <form method="post"  action="/update/place/add">
+        <form method="post"  action="/update/known/add">
       {{ csrf_field() }}
-      <a class="placeclass"></a>
-      <input type="text" name="id" style="border: none;pointer-events: none;" value="" class="placeclass"><br>
+      <a class="knownclass"></a>
+      <input type="text" name="id" style="border: none;pointer-events: none;" value="" class="knownclass"><br>
   新增問句：<textarea  name="Qadd" size="100" placeholder="提問"></textarea><br/>
   <input class="btn-info pull-bottom w-100" type="submit">
 </form>

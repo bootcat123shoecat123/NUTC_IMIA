@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Nullable;
 
-class topControll extends Controller
+class knownController extends Controller
 {
     //
     function question(Request $R){
-       return($this->show($R));
-    }
-
-    function update($id,Request $R){
-        $ra='';
-        $rd='';
+        return($this->show($R));
+     }
+    //
+    function update(Request $R){
+        $ra="";
+        $rd="";
         $url="";
         $key="";
         $mg="";
@@ -33,26 +32,23 @@ class topControll extends Controller
             $ra.='],';
             $ra=str_replace("\r",'',$ra);
         }
-        if($id=="deleteQ"){
+        if($R->Qdelete!=""){
             
-            //$mg=explode("\n",$R->Qdelete);
-            
+            $mg=explode("\n",$R->Qdelete);
+            print_r($mg);
             $rd='
-            "delete":["'.$R->Qdelete.'"]';
-            /*foreach($mg as $e){
+            "delete":[';
+            foreach($mg as $e){
             $rd.='"'.$e.'",';
                 
-            }*/
-            //$rd=str_replace("\r",'',$rd);
+            }
+            $rd.=']';
+            $rd=str_replace("\r",'',$rd);
         }
-            
-            $url='https://nutcqatest32local.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-            $key="056483546d824f47bbe0a733141eccb6";
-            $kb_id="67a3f89b-fbac-4017-bda2-f99dc0b21dd7";
-            if ($R->id<=68)$soure="863fc937-7920-437b-8392-32a25df7c6f7-Kb (1).xlsm - QnAs.tsv";
-            else $soure="Custom Editorial";
-            
-
+        $url=' https://nutcqatest.azurewebsites.net/qnamaker/v4.0/knowledgebases/';
+        $key="804aedf8-5c97-4cee-b388-0400c255e999";
+        $kb_id="29742c04-3343-4c14-82eb-8d24da8f0678";
+        
         if($R->A!="")$sendA='"answer": "'.$R->A.'",';
             $quest='PATCH';
             $send='{"update":{
@@ -60,14 +56,14 @@ class topControll extends Controller
                   {
                     "id": '.$R->id.','.$sendA.'
                     "source": "'.$soure.'",
-                    "questions": {'. $ra. $rd.'}
-                    
+                    "questions": {'. $ra. $rd.'
+                    }
                   }]
                 }
              }   ';
         $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
-        sleep(4);
-        return redirect("/place");
+
+        return redirect("/known");
         #QnA
     }
     function delete(Request $R){
@@ -78,13 +74,11 @@ class topControll extends Controller
         $send="";
         $kb_id="";
         $soure="";
-        
-            $url='https://nutcqatest32local.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-            $key="056483546d824f47bbe0a733141eccb6";
-            $kb_id="67a3f89b-fbac-4017-bda2-f99dc0b21dd7";
-            if ($R->id<=68)$soure="863fc937-7920-437b-8392-32a25df7c6f7-Kb (1).xlsm - QnAs.tsv";
-            else $soure="Custom Editorial";
-           
+       
+        $url=' https://nutcqatest.azurewebsites.net/qnamaker/v4.0/knowledgebases/';
+        $key="804aedf8-5c97-4cee-b388-0400c255e999";
+        $kb_id="29742c04-3343-4c14-82eb-8d24da8f0678";
+     
             $quest='PATCH';
             $send='{
                 "delete": {
@@ -96,8 +90,8 @@ class topControll extends Controller
                 }
             }';
         $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
-        sleep(4);
-        return redirect("/place");
+
+        return redirect("/known");
         #QnA
     }
     function add(Request $R){
@@ -121,10 +115,10 @@ class topControll extends Controller
             $r=str_replace("\r",'',$r);
             }
             print($r);
-                $url='https://nutcqatest32local.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-                $key="056483546d824f47bbe0a733141eccb6";
-                $kb_id="67a3f89b-fbac-4017-bda2-f99dc0b21dd7";
-       
+            $url=' https://nutcqatest.azurewebsites.net/qnamaker/v4.0/knowledgebases/';
+        $key="804aedf8-5c97-4cee-b388-0400c255e999";
+        $kb_id="29742c04-3343-4c14-82eb-8d24da8f0678";
+            
             if($r!=""){
                 $quest='PATCH';
                 $send='{
@@ -133,7 +127,6 @@ class topControll extends Controller
                             {
                                 "id": 0,
                                 "answer": "'.$R->A.'",
-                                "source": "Custom Editorial",
                                 "questions":'.$r.',
                                 "metadata": []
                             }
@@ -142,15 +135,14 @@ class topControll extends Controller
                 }';
             }
         $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
-        sleep(4);
-        return  redirect("/place");
+        return  redirect("/known");
         #QnA
     }
-    function curlGo($url,$kb_id,$key,$quest,$send){
+    function curlGo($url,$key,$quest,$send){
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $url.$kb_id,
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -179,56 +171,28 @@ class topControll extends Controller
         $send="";
         $quest='GET';
         $kb_id="";
-        
-            print($r);
-                $url='https://nutcqatest32local.cognitiveservices.azure.com/qnamaker/v4.0/knowledgebases/';
-                $key="056483546d824f47bbe0a733141eccb6";
-                $kb_id="67a3f89b-fbac-4017-bda2-f99dc0b21dd7";
-           
-            
-            $kb_id.='/Test/qna';
-        $response=$this->curlGo($url,$kb_id,$key,$quest,$send);
-        
-            //echo('<table border="1" style="float:left;"><tr><th>id</th><th>questions</th><th>answer</th></tr>');
+        $url='https://tatest2022.cognitiveservices.azure.com/language/query-knowledgebases/projects/new-project/qnas?api-version=2021-10-01';
+        $key="4ed3b8d5359647a984fb757d873e20cc";
+        $response=$this->curlGo($url,$key,$quest,$send);
              $re=(array)json_decode($response);
-            /*foreach($re["qnaDocuments"] as $e){
-                $questions="";
-                foreach($e->questions as $qe){
-                    $questions.=$qe."<br>";
-                }
-                echo("<tr><td>".(string)$e->id."</td><td>".$questions."</td><td>".str_replace("\n","<br>",$e->answer)."</td></tr>");
-            }
-
-            echo("</table></td><td>");*/
-            //echo('<table border="1" style="float:left;"><tr><th>id</th><th>questions</th><th>answer</th></tr>');
-        
-            /*foreach($re2["qnaDocuments"] as $e){
-                $questions="";
-                foreach($e->questions as $qe){
-                    $questions.=$qe."<br>";
-                }
-                echo("<tr><td>".(string)$e->id."</td><td>".$questions."</td><td>".str_replace("\n","<br>",$e->answer)."</td></tr>");
-            }
-
-            echo("</table>");*/
+            
             $singleQA=[];
             if($R!=null){
-            foreach($re["qnaDocuments"] as $singleQA){
+            foreach($re["value"] as $singleQA){
                 if($singleQA->id==$R->id){
                     break;
-                    
                 }
             }
         }
         if($R!=null){
-        return view('welcome',[
-            'QAplace'=>$re["qnaDocuments"],
+        return view('known',[
+            'QAknown'=>$re["value"],
             'Q'=>$singleQA,
             'num'=>$R->num
             ]);
         }else{
-        return view('welcome',[
-            'QAplace'=>$re["qnaDocuments"]
+        return view('known',[
+            'QAknown'=>$re["value"]
             ]);
         }
     }
