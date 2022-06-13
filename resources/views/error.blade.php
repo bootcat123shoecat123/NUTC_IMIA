@@ -7,8 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    @php
-    var_dump($error);    
-    @endphp
+    {!!$error!!}
 </body>
 </html>

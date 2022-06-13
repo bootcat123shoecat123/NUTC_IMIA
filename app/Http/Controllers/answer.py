@@ -19,8 +19,8 @@ db = pymysql.connect(
 cursor = db.cursor()
 
 app = Flask(__name__)
-line_bot_api = LineBotApi('imzwbdnWwai8/UeyDB+P0xix/PsQZ177WNAmVIyPVaJMvRStdih9kZyniAHJAjMn2v+yU4dqITNccEpYqDPaRYsVLbHNXux9cRD7KTzIrrdEOFiMzlJVaxGhvYEgfMnG/gecF00JidNQbm6B6tqMqQdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('47ddc2eba4976b48fa2f14375032a147')
+line_bot_api = LineBotApi('[channel_access_token]')
+handler = WebhookHandler('[channel_secret]')
 
 @app.route("/", methods=['POST'])
 def callback():

@@ -155,7 +155,7 @@ a {
 
                     @foreach ($QAphone as $item)
                     @php
-                    $modal = "exampleModal".(string)$mnum;
+                    $modal = "exampleModal".(string)$item->id;
                   @endphp
                     <div class="row">
                         <div class="col-1 text-center">
@@ -180,7 +180,7 @@ a {
     </button>
   
   <!-- Modal -->
-  <div class="modal fade c0" id="<?php echo $modal ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal."Title" ?>" aria-hidden="true">
+  <div class="modal fade c0" id="<?php echo $modal ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $modal ?>" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -195,7 +195,8 @@ a {
             {{ csrf_field() }}
             {{-- <input type="text" name="id" style="border: none;pointer-events: none;"  class="phoneclass"><br> --}}
             <input name="id" type="hidden" value="{{$item->id}}" >
-            <textarea class="form-control" id="phonea" rows="3" name="A" size="100" placeholder="回答"></textarea>
+            <input name="ttlQ" type="hidden" value="@foreach($item->questions as $qitem)\n{{$qitem}}@endforeach">
+            <textarea class="form-control" id="phonea" rows="3" name="A" size="100" placeholder="回答">{!!$item->answer!!}</textarea>
             {{-- <textarea name="A" id="phonea" placeholder="回答"></textarea><br> --}}
             <input class="btn btn-primary pull-bottom w-100" type="submit">
         </form>
@@ -234,17 +235,17 @@ a {
                             <th class="col-1 w-80" scope="col">{{$mnum}}</th>
                             <th class="col-1 w-80" scope="col">
                              
-<button type="button" class="btn btn-outline-info pull-right ls3" data-toggle="modal" data-target="<?php echo '#exampleModal'.$Q->id ?>">
+<button type="button" class="btn btn-outline-info pull-right ls3" data-toggle="modal" data-target="<?php echo '#exampleModal'.$Q->id.'a2'?>">
   新增問題
 </button>
 
 <!-- Modal -->
-<div class="modal fade c0"   id="<?php echo 'exampleModal'.$Q->id ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo '#exampleModal'.$Q->id.'Title' ?>" aria-hidden="true">
+<div class="modal fade c0"   id="<?php echo 'exampleModal'.$Q->id.'a2'  ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo '#exampleModal'.$Q->id.'a2' ?>" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
       
-        <h5 class="modal-title" id="<?php echo 'exampleModal'.$Q->id.'Title' ?>">{{$mnum}}</h5>
+        <h5 class="modal-title" id="<?php echo 'exampleModal'.$Q->id.'a2' .'Title' ?>">{{$mnum}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -254,7 +255,7 @@ a {
           {{ csrf_field() }}
           {{-- <input type="text" name="id" style="border: none;pointer-events: none;"  class="phoneclass"><br> --}}
           <input name="id" type="hidden" value="{{$item->id}}" >
-          <input name="ttlQ" type="hidden" value="@foreach($Q->questions as $qitem){{$qitem}}\n @endforeach">
+          <input name="ttlQ" type="hidden" value="@foreach($Q->questions as $qitem)\n{{$qitem}}@endforeach">
           <input name="A" type="hidden" value="{{$Q->answer}}">
           <textarea class="form-control"  rows="3" name="Qadd" size="100" placeholder="問句"></textarea>
           {{-- 新增問句：<textarea  name="Qadd" size="100" placeholder="提問"></textarea><br/> --}}
@@ -268,16 +269,12 @@ a {
 </div>
                             </th>
                         </tr>
-                        
-                   
-                    
-                     
                     @foreach($Q->questions as $qitem)
                       <tr class="row"><td class="col-3 w-80" scope="col">{!!$qitem!!}
                         </td><td>
                            <form action="/update/phone/deleteQ" method="post"> 
                             {{ csrf_field() }}
-                            <input name="ttlQ" type="hidden" value="@foreach($Q->questions as $qitem){{$qitem}}\n @endforeach">
+                            <input name="ttlQ" type="hidden" value="@foreach($Q->questions as $qitem2)\n{!!$qitem2!!}@endforeach">
                             <input name="A" type="hidden" value="{{$Q->answer}}">
                             <input name="id" type="hidden" value="{{$Q->id}}">
                             <input name="Qdelete" type="hidden" value="{!!$qitem!!}">

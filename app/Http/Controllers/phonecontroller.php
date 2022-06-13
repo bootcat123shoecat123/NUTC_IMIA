@@ -18,34 +18,31 @@ class phonecontroller extends Controller
         $send="";
         $kb_id="";
         $sendA="";
-        if($R->Qadd!=""){
+        
+       
+        if($R->Qdelete!=""){
             
-            $mg=explode("\n ",$R->ttlQ);
-            print_r($mg);
+            $mg=explode('\n',$R->ttlQ);
             foreach($mg as $e){
-            $rq.='"'.$e.'",';
-            }
-
-            $rq.='"'.$R->Qadd.'"';
-
-            $rq=str_replace("\r",'',$rq);
-        }elseif($R->Qdelete!=""){
-            
-            $mg=explode("\n ",$R->ttlQ);
-            print_r($mg);
-            foreach($mg as $e){
-                if($e!=$R->Qdelete)$rq.='"'.$e.'",';
                 
+            $e=str_replace("\r\n",'',$e);
+                if(0==strcmp($e,$R->Qdelete)or$e==""){
+                    print_r('wwww');
+                }else{
+                    
+                    $rq.='"'.$e.'",';
+                }
             }
             $rq=str_replace("\r",'',$rq);
         }else{
-            $mg=explode("\n ",$R->ttlQ);
+            $mg=explode("\n",$R->ttlQ);
             print_r($mg);
             foreach($mg as $e){
-                $rq.='"'.$e.'",';
+                if($e!="")$rq.='"'.$e.'",';
                 }
+                if($R->Qadd!="")$rq.='"'.$R->Qadd.'"';
         }
-            
+        $rq=str_replace("\r",'',$rq);
      
             $url='https://tatest2022.cognitiveservices.azure.com/language/query-knowledgebases/projects/new-project/qnas?api-version=2021-10-01';
             $key="4ed3b8d5359647a984fb757d873e20cc";
@@ -63,9 +60,10 @@ class phonecontroller extends Controller
                       ]
                     }
                 }
-             }] ';
-        $response=$this->curlGo($url,$key,$quest,$send);
+             ] ';
 
+        $response=$this->curlGo($url,$key,$quest,$send);
+        
         return redirect("/phone");
         #QnA
     }
@@ -91,7 +89,7 @@ class phonecontroller extends Controller
                 }
               }]';
         $response=$this->curlGo($url,$key,$quest,$send);
-
+        
         return redirect("/phone");
         #QnA
     }
@@ -124,18 +122,23 @@ class phonecontroller extends Controller
         
             if($r!=""){
                 $quest='PATCH';
-                $send='{
+                $send='[
+                    {
                     "op": "add",
                     "value": {
-                                "answer": "'.$R->A.'",
-                                "source": "'.$soure.'",
-                                "questions":'.$r.'
+                        "answer": "'.$R->A.'",
+                        "source": "'.$soure.'",
+                        "questions":'.$r.'
                             }
-                        ]
+                        
                     }
-                }';
+                
+                ]';
             }
-        $response=$this->curlGo($url,$key,$quest,$send);
+            $send=str_replace("\n",'',$send);
+           
+            $response=$this->curlGo($url,$key,$quest,$send);
+        
         return  redirect("/phone");
         #QnA
     }
@@ -153,14 +156,15 @@ class phonecontroller extends Controller
             CURLOPT_CUSTOMREQUEST => $quest,
             CURLOPT_POSTFIELDS =>$send,
             CURLOPT_HTTPHEADER => array(
-                'Ocp-Apim-Subscription-Key:4ed3b8d5359647a984fb757d873e20cc',
-                'Content-Type: application/json'
-                ),
+                'Content-Type: application/json',
+                'Ocp-Apim-Subscription-Key: 4ed3b8d5359647a984fb757d873e20cc'
+              ),
             )
         );
 
         $response = curl_exec($curl);
-
+        
+        
         curl_close($curl);
         return $response;
     }

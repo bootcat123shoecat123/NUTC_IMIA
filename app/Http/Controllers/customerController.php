@@ -29,7 +29,7 @@ class customerController extends Controller
     }
     function getusername(string $user_id)
     {
-        $auther = 'imzwbdnWwai8/UeyDB+P0xix/PsQZ177WNAmVIyPVaJMvRStdih9kZyniAHJAjMn2v+yU4dqITNccEpYqDPaRYsVLbHNXux9cRD7KTzIrrdEOFiMzlJVaxGhvYEgfMnG/gecF00JidNQbm6B6tqMqQdB04t89/1O/w1cDnyilFU=';
+        $auther = '[channel_access_token]';
 
         $curl = curl_init();
 
