@@ -57,6 +57,9 @@ background: black;
 .modal-dialog-centered{
   z-index: 9999;
 }
+a {
+    color:white;
+}
         </style>
          <nav class="sticky-top navbar navbar-expand-lg navbar-light" role='navigation' style="background:#6798C0;">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -71,19 +74,125 @@ background: black;
           </nav>
     </head>
     <body class="antialiased">
+              <nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" role="navigation" style="background:#6798C0;">
+                <a class="navbar-brand" href="#" style="color: white">後台</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li >&nbsp;<a href="/backTeach">教師資訊   </a>&nbsp;</li>
+                <li >&nbsp;<a href="/backID">樓層資訊</a>&nbsp;</li>
+                <li >&nbsp;<a href="/backMap">課程地圖</a>&nbsp;</li>
+                <li >&nbsp;<a href="/backFun">功能說明</a>&nbsp;</li>
+                <li>&nbsp;<a href="/known">資管問題</a>&nbsp;</li>
+                <li>&nbsp;<a href="/backCard">Card</a>&nbsp;</li>
+                <li >&nbsp;<a href="/place">處室位置</a>&nbsp;</li>
+                <li >&nbsp;<a href="/phone">聯絡方式</a>&nbsp;</li>
+                <li >&nbsp;<a href="/known">資管系問答</a>&nbsp;</li>
+                <li>&nbsp;<a href="/customer">真人客服</a>&nbsp;</li>
+              </ul>
+              
           
         <div class="container-fluid">
             <div class="row flex-nowrap">
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
-            <div class="position-fixed text-white container">
-                <a class="h2 text-white">Database</a>
-               <ul class="nav navbar-nav text-white">
-                <li ><a href="/place">處室位置</a></li>
-                <li class="active"><a href="/phone">聯絡方式</a></li>
-              </ul>
+                {{-- <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
+                    <div class="position-fixed text-white container">
+                      <a class="h2 text-white">QnA</a>
+                      <ul class="nav navbar-nav text-white">
+                       <li ><a href="/backTeach">教師資訊</a></li>
+                       <li ><a href="/backID">樓層資訊</a></li>
+                       <li ><a href="/backMap">課程地圖</a></li>
+                       <li ><a href="/backFun">功能</a></li>
+                     </ul>
+                        <a class="h2 text-white">Database</a>
+                       <ul class="nav navbar-nav text-white">
+                        <li ><a href="/place">處室位置</a></li>
+                        <li class="active"><a href="/phone">聯絡方式</a></li>
+                      </ul>
+                    </div>
+                </div> --}}
+                <div class="col py-3 position-sticky">
+        <table class="table">
+            <tr class="row justify-content-start"><th class="col-1" scope="col">id</th><th class="col-2" scope="col">questions</th><th class="col-auto" scope="col">answer</th><th class="col-auto" scope="col"></th></tr>
+            <tr class="row"><input id="ls" type="button" class="w-100 btn btn-outline-success pull-right" value="新增QA"></tr>
+            @foreach ($QAplace as $item)
+            <tr class="row"><a href="#{{$item->id}}"></a><td class="col-1 h2" scope="col" onclick="putid('place',{{$item->id}})">{{$item->id}}</td>
+                <td class="col-2" scope="col">
+                    <form action="/question/place" method="post">{{ csrf_field() }}  <input name="id" type="hidden" value="{{$item->id}}"><input class="btn btn-info w-100 blocker" type="submit" value="Questions"></form>
+               <input type="button" onclick="putid('place',{{$item->id}})" value="新增問句" class="btn btn-outline-success pull-right w-100 ls2" >
+               @if (count($item->questions)<3)
+               @for ($i = 0; $i < count($item->questions); $i++)
+               
+             <div class="col-15 text-truncate">
+                   {{$item->questions[$i]}}
+               </div>
+               @endfor 
+               @else
+                    @for ($i = 0; $i < 3; $i++)
+              <div class="col-15 text-truncate">
+                    {{$item->questions[$i]}}
+                </div> 
+                @endfor 
+               @endif
+            </div>
+            </div>
+        </td>
+                <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><div class="dropdown"> 
+                        
+                         foreach($item->questions as $qitem) 
+                        <a class="dropdown-item" >!!$qitem!!}
+                            <form action="/update/place/deleteQ" method="post"> 
+                                { csrf_field() }}
+                                <input name="id" type="hidden" value="{$item->id}}" >
+                                <input name="Qdelete" type="hidden" value="!!$qitem!!}">
+                                <input type="submit" value="X"　 class="btn btn-outline-danger pull-right" >
+                            </form></a>
+                         endforeach
+                        </div>-->
+            
+                <td class="col py-3">{!!nl2br($item->answer)!!}</td><td>
+                    <input onclick="putid('place',{{$item->id}})" type="submit" value="🖊️" class="btn btn-outline-info pull-right ls3">
+            </td><td>
+                    <form action="/delete/place/" method="post">
+                    {{ csrf_field() }}
+                    <input name="id" type="hidden" value="{{$item->id}}" >
+                    <input type="submit" value="🗑️" class="btn btn-outline-danger pull-right">
+                </form>
+            </td>
+            </tr>
+            @endforeach
+        </table>
+                </div>
+        <div class="col px-1 bg-light">
+            <div class="col fixed-content">
+            
+            @if (isset($Q))
+            
+            <table class="table">
+                <tr class="row"><th class="col-3 w-80" scope="col">{{$Q->id}}</th></tr>
+            @foreach($Q->questions as $qitem) 
+            <tr class="row"><td class="col-3 w-80" scope="col">{!!$qitem!!}
+                </td><td>
+                <form action="/update/place/deleteQ" method="post"> 
+                    {{ csrf_field() }}
+                    <input name="id" type="hidden" value="{{$Q->id}}">
+                    <input name="Qdelete" type="hidden" value="{!!$qitem!!}">
+                    <input type="submit" value="X"　 class="btn btn-outline-danger pull-right" >
+                </form>
+                </td>
+            </tr>
+             @endforeach
+             <tr class="row"><td><input type="button" onclick="putid('place',{{$Q->id}})" value="新增問句" class="btn btn-outline-success pull-right w-100 ls2" ></td></tr>
+            </table>
+            @endif
+            
+                </div>
+            </div>
+          </div>
+
+                </div>
             </div>
         </div>
 
