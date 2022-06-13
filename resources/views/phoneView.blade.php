@@ -269,7 +269,7 @@
                                     {{-- <input type="text" name="id" style="border: none;pointer-events: none;"  class="phoneclass"><br> --}}
                                     <input name="id" type="hidden" value="{{ $Q->id }}">
                                     <input name="ttlQ" type="hidden"
-                                        value="@foreach ($Q->questions as $qitem) \n{{ $qitem }} @endforeach">
+                                        value="@foreach ($Q->questions as $qitem2)\n{!! $qitem2 !!}">
                                     <input name="A" type="hidden" value="{{ $Q->answer }}">
                                     <textarea class="form-control" rows="3" name="Qadd" size="100" placeholder="問句"></textarea>
                                     {{-- 新增問句：<textarea  name="Qadd" size="100" placeholder="提問"></textarea><br/> --}}
@@ -309,7 +309,7 @@
                                         <form action="/update/phone/deleteQ" method="post">
                                             {{ csrf_field() }}
                                             <input name="ttlQ" type="hidden"
-                                                value="@foreach ($Q->questions as $qitem2) \n{!! $qitem2 !!} @endforeach">
+                                                value="@foreach ($Q->questions as $qitem2)\n{!! $qitem2 !!} @endforeach">
                                             <input name="A" type="hidden" value="{{ $Q->answer }}">
                                             <input name="id" type="hidden" value="{{ $Q->id }}">
                                             <input name="Qdelete" type="hidden" value="{!! $qitem !!}">
