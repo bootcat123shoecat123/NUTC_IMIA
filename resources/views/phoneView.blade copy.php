@@ -282,7 +282,7 @@ a {
                       </tr>
                      @endforeach
                      <tr class="row"><td colspan="2" >資料已經到底了!</td></tr>
-   
+                   
                     </table>
                     @endif
                     
