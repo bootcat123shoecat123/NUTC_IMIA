@@ -22,7 +22,7 @@ class phonecontroller extends Controller
        
         if($R->Qdelete!=""){
             
-            $mg=explode('\n',$R->ttlQ);
+            $mg=explode(' \n',$R->ttlQ);
             foreach($mg as $e){
                 
             $e=str_replace("\r\n",'',$e);
@@ -35,7 +35,7 @@ class phonecontroller extends Controller
             }
             $rq=str_replace("\r",'',$rq);
         }else{
-            $mg=explode("\n",$R->ttlQ);
+            $mg=explode(" \n",$R->ttlQ);
             print_r($mg);
             foreach($mg as $e){
                 if($e!="")$rq.='"'.$e.'",';
@@ -186,6 +186,7 @@ class phonecontroller extends Controller
             $singleQA=[];
             if($R!=null){
             foreach($re["value"] as $singleQA){
+                
                 if($singleQA->id==$R->id){
                     break;
                 }

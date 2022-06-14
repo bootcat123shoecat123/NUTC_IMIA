@@ -46,18 +46,6 @@ background: black;
 body{
     　overflow-x: hidden;
 }
-.A{
-  display: flex;
-    justify-content: center; 
-    align-items: center; 
-}
-
-.hover-bg{
-  background: black
-}
-a {
-    color:white;
-}
         </style>
     </head>
     
@@ -133,7 +121,11 @@ a {
                             <div class="m-3">
                           <div class="row">
                               <div class="col-3">
+<<<<<<< HEAD
+                                <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">代碼</label>
+=======
                                 <label for="exampleFormControlTextarea1" class="p-0 m-0" style="font-size:2vh;text-align: left">教師名稱</label>
+>>>>>>> origin/fang
                               </div>
 
                             </div>

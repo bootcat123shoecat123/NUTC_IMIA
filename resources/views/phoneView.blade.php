@@ -17,7 +17,6 @@
             tr:nth-of-type(odd) td form .blocker{
     background: #6798C0;
     border-color: rgb(153, 214, 234);
-
 }
 tr:nth-of-type(even) td form .blocker{
     background: rgb(153, 214, 234);
@@ -295,7 +294,6 @@ a {
 </div>
 </div>
 <script>
-
 </script>
         
     </body>
