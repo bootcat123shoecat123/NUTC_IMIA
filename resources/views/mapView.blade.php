@@ -22,49 +22,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     <style>
-        tr:nth-of-type(odd) td form .blocker {
-            background: #6798C0;
-            border-color: rgb(153, 214, 234);
 
-        }
-
-        tr:nth-of-type(even) td form .blocker {
-            background: rgb(153, 214, 234);
-            border-color: #6798C0;
-            color: black;
-        }
-
-        body {
-            overflow-x: hidden;
-
-        }
-
-        .fixed-content {
-            top: 10%;
-            bottom: 0;
-            position: fixed;
-            overflow-y: scroll;
-            overflow-x: hidden;
-        }
-
-        .t {
-
-            position: absolute;
-            background: black;
-            height: 100%;
-            width: 20%;
-            top: 0%;
-            left: 0%;
-        }
-
-        .A {
+          /* 新增課程地圖按鈕位置 */
+        .center {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        /* 設定超連結字體顏色 */
         a {
             color: white;
+            
         }
     </style>
 </head>
@@ -98,38 +67,20 @@
     </nav>
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            {{-- <div class="col-2 col-md-3 col-xl-2 px-sm-2 px-1 bg-dark">
-            <div class="position-fixed text-white container">
-              <a class="h2 text-white">QnA</a>
-              <ul class="nav navbar-nav text-white">
-               <li ><a href="/backTeach">教師資訊</a></li>
-               <li ><a href="/backID">樓層資訊</a></li>
-               <li ><a href="/backMap">課程地圖</a></li>
-               <li ><a href="/backFun">功能</a></li>
-             </ul>
-                <a class="h2 text-white">Database</a>
-               <ul class="nav navbar-nav text-white">
-                <li ><a href="/place">處室位置</a></li>
-                <li class="active"><a href="/phone">聯絡方式</a></li>
-              </ul>
-            </div>
-        </div> --}}
             <br>
             <br>
             <br>
             <br>
             <div class="col-12">
                 <br>
-                <div class="row A">
-
-
+                <div class="row center">
                     <h4 class="col-10"><strong>課程地圖</strong></h4>
+                    {{-- 新增地圖按鈕 --}}
                     <button type="button" class="btn btn-primary pull-right" data-toggle="modal"
                         data-target="#exampleModalBu">
                         新增地圖
                     </button>
-
-                    <!-- Modal -->
+                    <!-- 新增地圖按鈕Modal -->
                     <div class="modal fade" id="exampleModalBu" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalBuTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -144,7 +95,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <form method="post" action="/create/backMap">
-                                        {{-- 新增課程地圖 --}}
+                                        {{-- 新增地圖的表單內容 --}}
                                         {{ csrf_field() }}
                                         <div class="m-3">
                                             <div class="row">
@@ -152,7 +103,6 @@
                                                     <label for="exampleFormControlTextarea1" class="p-0 m-0"
                                                         style="font-size:2vh;text-align: left">代碼</label>
                                                 </div>
-
                                             </div>
                                             <input type="text" class="form-control"
                                                 aria-label="Text input with checkbox">
@@ -171,19 +121,18 @@
                                         <input class="btn btn-primary pull-bottom w-100" type="submit">
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
                 <br>
 
-                <h3 class="A">資管</h3>
+                <h3 class="center">資管</h3>
                 <br>
                 <br>
                 <div class="container-fluid">
                     <div style="border-color:#FBE251; border-style:solid;border-radius:2vh;}">
-                        <div class="row A">
+                        <div class="row center">
                             <div class="col-5 border border-light rounded">
 
                                 @php
@@ -251,9 +200,6 @@
                                                                             type="submit">
                                                                     </div>
                                                                 </form>
-
-
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -343,9 +289,6 @@
                                                                             type="submit">
                                                                     </div>
                                                                 </form>
-
-
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -375,7 +318,7 @@
                     <br>
                     <br>
                     <br>
-                    <h3 class="A">資訊應用</h3>
+                    <h3 class="center">資訊應用</h3>
                     <div class="container-fluid">
                         <div style="border-color:#BEC23F; border-style:solid;border-radius:2vh;}">
                             <div class="row">
@@ -545,9 +488,6 @@
                                                                                 type="submit">
                                                                         </div>
                                                                     </form>
-
-
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -579,5 +519,4 @@
         <br>
         <br>
 </body>
-
 </html>
